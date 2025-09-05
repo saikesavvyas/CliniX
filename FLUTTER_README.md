@@ -38,12 +38,12 @@ Watch the UI Showcase in this demo video
 
 ##  Features
 
-- ** Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
-- ** Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
-- ** Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
-- ** Predicted Backup Time:** Displays estimated battery runtime during outages.
-- ** Historical Logs:** View a history of power source switching events.
-- ** Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
+- **Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
+- **Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
+- **Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
+- **Predicted Backup Time:** Displays estimated battery runtime during outages.
+- **Historical Logs:** View a history of power source switching events.
+- **Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
 
 ## Getting Started
 
@@ -147,6 +147,7 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
 
 
