@@ -1,9 +1,9 @@
-# Clinix
+# CliniX
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![GitHub issues](https://img.shields.io/github/issues/saikesavvyas/Clinix)
-![GitHub stars](https://img.shields.io/github/stars/saikesavvyas/Clinix)
-![GitHub forks](https://img.shields.io/github/forks/saikesavvyas/Clinix)
+![GitHub issues](https://img.shields.io/github/issues/saikesavvyas/CliniX)
+![GitHub stars](https://img.shields.io/github/stars/saikesavvyas/CliniX)
+![GitHub forks](https://img.shields.io/github/forks/saikesavvyas/CliniX)
 ![App: Flutter](https://img.shields.io/badge/App-Flutter-02569B?logo=flutter)
 ![Platform](https://img.shields.io/badge/Platform-Android__%7C__iOS__%7C__Web-lightgrey)
 ![Hardware: PLC](https://img.shields.io/badge/Hardware-PLC-green)
@@ -223,7 +223,7 @@ The Flutter dashboard provides a real-time view and control panel.
 
 ## Project Structure
 ```bash
-/Clinix/
+/CliniX/
 │
 ├── /firmware/ 
 │ ├── /src/
@@ -270,7 +270,7 @@ Distributed under the MIT License. See `LICENSE` file for more information. **Th
 
 Your Name - [@your_twitter](https://twitter.com/your_twitter) - your.email@example.com
 
-Project Link: [https://github.com/saikesavvyas/Clinix](https://github.com/saikesavvyas/Clinix)
+Project Link: [https://github.com/saikesavvyas/CliniX](https://github.com/saikesavvyas/CliniX)
 
 ## Acknowledgements
 
