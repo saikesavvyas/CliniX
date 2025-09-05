@@ -9,30 +9,31 @@
 
 A beautiful and responsive Flutter dashboard designed for the **CliniX** system. This frontend prototype demonstrates the user interface for remote monitoring of power sources (Grid, Solar, Battery, Generator), displaying voltage metrics, battery status, and system logs, all powered by realistic mock data.
 
-## 🎨 UI Showcase
+## 🎥 App Demo
 
-<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
+Watch the UI Showcase in this demo video
 
-<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-<img src="/media/Splash_Screen.png" width="180"/><br>
-<strong> Splash Screen</strong>
-</div>
+<p align="center">
+  <img src="/media/app_demo.gif" alt="CliniX App Demo" width="300"/>
+</p>
 
-<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-<img src="/media/Dashboard.png" width="180"/><br>
-<strong> Dashboard</strong>
-</div>
+## 📸 Screen Gallery
 
-<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-<img src="/media/Battery.png" width="180"/><br>
-<strong> Battery</strong>
-</div>
-
-<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-<img src="/media/Log_Data.png" width="180"/><br>
-<strong>Log Data</strong>
-</div>
-
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Splash Screen</strong></td>
+      <td align="center"><strong>Dashboard</strong></td>
+      <td align="center"><strong>Battery</strong></td>
+      <td align="center"><strong>Log Data</strong></td>
+    </tr>
+    <tr>
+      <td><img src="/media/Splash_Screen.png" width="200"></td>
+      <td><img src="/media/Dashboard.png" width="200"></td>
+      <td><img src="/media/Battery.png" width="200"></td>
+      <td><img src="/media/Log_Data.png" width="200"></td>
+    </tr>
+  </table>
 </div>
 
 ## ✨ Features
@@ -146,5 +147,6 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
 
