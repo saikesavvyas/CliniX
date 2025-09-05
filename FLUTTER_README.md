@@ -9,25 +9,30 @@
 
 A beautiful and responsive Flutter dashboard designed for the **CliniX** system. This frontend prototype demonstrates the user interface for remote monitoring of power sources (Grid, Solar, Battery, Generator), displaying voltage metrics, battery status, and system logs, all powered by realistic mock data.
 
-## 📸 App Screenshots
+## 🎨 UI Showcase
 
-<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-  <div style="text-align: center;">
-    <img src="../media/Splash_Screen.png" width="200"><br>
-    <strong>Splash Screen</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="../media/Dashboard.png" width="200"><br>
-    <strong>Dashboard</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="../media/Battery.png" width="200"><br>
-    <strong>Battery</strong>
-  </div>
-  <div style="text-align: center;">
-    <img src="../media/Log_Data.png" width="200"><br>
-    <strong>Log Data</strong>
-  </div>
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
+
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="/media/Splash_Screen.png" width="180"/><br>
+<strong> Splash Screen</strong>
+</div>
+
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="/media/Dashboard.png" width="180"/><br>
+<strong> Dashboard</strong>
+</div>
+
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="/media/Battery.png" width="180"/><br>
+<strong> Battery</strong>
+</div>
+
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="/media/Log_Data.png" width="180"/><br>
+<strong>Log Data</strong>
+</div>
+
 </div>
 
 ## ✨ Features
@@ -141,4 +146,5 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
