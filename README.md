@@ -50,31 +50,45 @@ Rural clinics face significant challenges due to unstable power grids, directly 
 *   **Cross-Platform Remote Dashboard:** A Flutter application provides real-time remote monitoring and control from any device (Android, iOS, Web). View status, historical data charts, and execute manual overrides from anywhere.
 
 ### System Architecture
-+----------------+ +-----------------------------+
-| | | CENTRAL PLC |
-| Power |<--->| (Main Controller) |
-| Sources | | - Source Switching Logic |
-| (Grid, Solar, | | - Load Priority Management |<---> GSM Module (for SMS)
-| Batt, Gen) | +-----------------------------+
-+----------------+ ^
-| (Modbus RTU, Ethernet)
-v
-+-----------------------------+
-| ESP32 Module |
-| - SMS Alerts (GSM) |
-| - Data Gateway |<---> AI Server (HTTP API)
-| - WiFi |
-+-----------------------------+
-^
-| (Internet)
-v
-+-----------------------------+
-| Flutter Dashboard App |
-| (Android, iOS, Web) |
-| - Real-time Monitoring |
-| - Historical Charts |
-| - Manual Control |
-+-----------------------------+
+
+The following diagram illustrates the end-to-end flow of data and control in our system, from the physical power sources to the remote user's dashboard.
+
+```mermaid
+flowchart TD
+    subgraph A [Power Sources & Hardware Layer]
+        Grid[Grid Power]
+        Solar[Solar Power]
+        Battery[Battery Bank]
+        Generator[Generator]
+    end
+
+    subgraph B [Control & Sensing Layer]
+        Sensors[Voltage/Current Sensors]
+        PLC[Central PLC<br>Main Controller]
+        Relays[Contactor Relays]
+    end
+
+    subgraph C [Gateway & Communication Layer]
+        ESP32[ESP32 Module<br>Data Gateway]
+        GSM[GSM Module]
+    end
+
+    subgraph D [Cloud & AI Layer]
+        Broker[MQTT Broker<br>e.g., HiveMQ, Mosquitto]
+        AI[AI Prediction Server<br>Weather Forecast]
+    end
+
+    subgraph E [Application Layer]
+        Flutter[Flutter Dashboard App<br>Android, iOS, Web]
+    end
+
+    A -- Monitors & Controls --> B
+    PLC -- Modbus RTU/Ethernet --> ESP32
+    ESP32 -- SMS --> GSM
+    ESP32 -- MQTT --> Broker
+    ESP32 -- HTTP API Request --> AI
+    AI -- HTTP API Response --> ESP32
+    Broker -- MQTT Subscribe/Publish --> Flutter
 
 ## Hardware Bill of Materials (BOM)
 
@@ -176,6 +190,7 @@ The Flutter dashboard provides a real-time view and control panel.
 3.  **Manual Control:** Authorized users can manually force a source switch or manage load tiers.
 
 ## Project Structure
+```bash
 /Clinix/
 │
 ├── /firmware/ 
