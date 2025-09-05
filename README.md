@@ -49,9 +49,6 @@ Rural clinics face significant challenges due to unstable power grids, directly 
 *   **GSM-Based SMS Alerts:** An ESP32 with a GSM module sends real-time SMS alerts to clinic staff for critical events like grid failure, low generator fuel, or total power loss.
 *   **Cross-Platform Remote Dashboard:** A Flutter application provides real-time remote monitoring and control from any device (Android, iOS, Web). View status, historical data charts, and execute manual overrides from anywhere.
 
-### System Architecture
-
-The following diagram illustrates the end-to-end flow of data and control in our system, from the physical power sources to the remote user's dashboard.
 ## System Architecture
 
 The following diagram illustrates the end-to-end flow of data and control in our system, from the physical power sources to the remote user's dashboard.
