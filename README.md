@@ -1,5 +1,5 @@
 # Clinix
-Industry-Grade, Intelligent Source and Load Management System
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![GitHub issues](https://img.shields.io/github/issues/saikesavvyas/Clinix)
 ![GitHub stars](https://img.shields.io/github/stars/saikesavvyas/Clinix)
@@ -36,7 +36,7 @@ An Industry-Grade, end-to-end IoT solution designed to guarantee an uninterrupte
 
 ## About The Project
 
-Rural clinics face significant challenges due to unstable power grids, directly impacting patient care and vaccine preservation. This project provides a robust, smart, and remotely accessible power management system that ensures continuity of critical medical services with minimal human intervention.
+Rural clinics face significant challenges due to unstable power grids, directly impacting patient care and vaccine preservation. This project provides a life-saving, robust, smart, and remotely accessible power management system that ensures continuity of critical medical services with minimal human intervention.
 
 ### Key Features
 
@@ -63,15 +63,7 @@ v
 | ESP32 Module |
 | - SMS Alerts (GSM) |
 | - Data Gateway |<---> AI Server (HTTP API)
-| - WiFi/MQTT Client |
-+-----------------------------+
-^
-| (MQTT, HTTP)
-v
-+-----------------------------+
-| Cloud / Local |
-| MQTT Broker |
-| (e.g., Mosquitto, HiveMQ) |
+| - WiFi |
 +-----------------------------+
 ^
 | (Internet)
@@ -103,7 +95,7 @@ v
 This project involves multiple codebases:
 
 1.  **PLC Logic:** Written in Ladder Logic, Function Block Diagram, or Structured Text (vendor-specific software, e.g., TIA Portal, CODESYS, OpenPLC).
-2.  **ESP32 Firmware:** Written in C++ (Arduino Framework). Handles communication with the PLC, sending SMS, calling the AI API, and managing MQTT messages.
+2.  **ESP32 Firmware:** Written in C++ (Arduino Framework). Handles communication with the PLC, sending SMS, calling the AI API.
 3.  **AI Weather Prediction Model:** A Python-based model (e.g., using Scikit-learn, TensorFlow) hosted on a server to predict solar irradiance.
 4.  **Flutter Dashboard Application:** Written in Dart using the Flutter framework. Provides the UI for remote monitoring and control.
 
@@ -144,7 +136,7 @@ This project involves multiple codebases:
 
 2.  **Configure the ESP32 Firmware:**
     *   Open the project in Arduino IDE/PlatformIO.
-    *   Update `config.h` with your settings: WiFi credentials, MQTT broker details, API endpoint, and registered phone numbers.
+    *   Update `config.h` with your settings: WiFi credentials, API endpoint, and registered phone numbers.
     *   Upload the code to the ESP32.
 
 3.  **Program the PLC:**
@@ -156,7 +148,6 @@ This project involves multiple codebases:
 4.  **Setup the Flutter Dashboard:**
     *   Navigate to the Flutter project directory.
     *   Run `flutter pub get` to install dependencies.
-    *   Update the `lib/config/constants.dart` file with your MQTT broker connection details.
     *   Run `flutter run` to build and deploy to your device/emulator.
 
 ## Usage
@@ -176,8 +167,6 @@ This project involves multiple codebases:
 
 ### SMS Alert System
 The system sends automatic alerts for events like:
-*   `[CLINIC POWER] Alert: Grid power lost. System switched to Solar.`
-*   `[CLINIC POWER] Warning: Solar output low. Running on Battery.`
 *   `[CLINIC POWER] CRITICAL: All sources down! Manual intervention required!`
 
 ### Remote Dashboard App
@@ -189,29 +178,29 @@ The Flutter dashboard provides a real-time view and control panel.
 ## Project Structure
 /Clinix/
 │
-├── /firmware/ # ESP32 Arduino Code
+├── /firmware/ 
 │ ├── /src/
 │ │ ├── main.cpp
 │ │ ├── modbus_handler.cpp
 │ │ ├── sms_handler.cpp
-│ │ ├── mqtt_handler.cpp # MQTT communication
+│ │ ├── mqtt_handler.cpp 
 │ │ └── config.h.example
 │ └── platformio.ini
 │
-├── /dashboard/ # Flutter Application
+├── /dashboard/ 
 │ ├── /lib/
-│ │ ├── /models/ # Data models
-│ │ ├── /providers/ # State management (e.g., MQTT client)
-│ │ ├── /screens/ # App screens
+│ │ ├── /models/ 
+│ │ ├── /providers/ 
+│ │ ├── /screens/
 │ │ └── main.dart
 │ └── pubspec.yaml
 │
-├── /ai-model/ # Python AI Code
+├── /ai-model/ 
 │ ├── model_training.ipynb
-│ ├── app.py # Flask/FastAPI server
+│ ├── app.py 
 │ └── requirements.txt
 │
-├── /plc-logic/ # PLC Project Files (Vendor Specific)
+├── /plc-logic/ 
 │ └── main_program.file
 │
 └── README.md
@@ -221,9 +210,9 @@ The Flutter dashboard provides a real-time view and control panel.
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch 
+3. Commit your Changes 
+4. Push to the Branch 
 5. Open a Pull Request
 
 ## License
@@ -234,7 +223,7 @@ Distributed under the MIT License. See `LICENSE` file for more information. **Th
 
 Your Name - [@your_twitter](https://twitter.com/your_twitter) - your.email@example.com
 
-Project Link: [https://github.com/your_username/your-repo-name](https://github.com/your_username/your-repo-name)
+Project Link: [https://github.com/saikesavvyas/Clinix](https://github.com/saikesavvyas/Clinix)
 
 ## Acknowledgements
 
