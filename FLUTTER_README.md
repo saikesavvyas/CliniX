@@ -9,7 +9,7 @@
 
 A beautiful and responsive Flutter dashboard designed for the **CliniX** system. This frontend prototype demonstrates the user interface for remote monitoring of power sources (Grid, Solar, Battery, Generator), displaying voltage metrics, battery status, and system logs, all powered by realistic mock data.
 
-## 🎥 App Demo
+##  App Demo
 
 Watch the UI Showcase in this demo video
 
@@ -17,7 +17,7 @@ Watch the UI Showcase in this demo video
   <img src="/media/app_demo.gif" alt="CliniX App Demo" width="300"/>
 </p>
 
-## 📸 Screen Gallery
+##  Screen Gallery
 
 <div align="center">
   <table>
@@ -36,16 +36,16 @@ Watch the UI Showcase in this demo video
   </table>
 </div>
 
-## ✨ Features
+##  Features
 
-- **🎨 Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
-- **📊 Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
-- **🔋 Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
-- **⏳ Predicted Backup Time:** Displays estimated battery runtime during outages.
-- **📜 Historical Logs:** View a history of power source switching events.
-- **🌐 Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
+- ** Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
+- ** Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
+- ** Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
+- ** Predicted Backup Time:** Displays estimated battery runtime during outages.
+- ** Historical Logs:** View a history of power source switching events.
+- ** Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -78,7 +78,7 @@ Watch the UI Showcase in this demo video
 
 The app will launch with a 5-second splash screen and then proceed to the login screen. You can use any credentials to log in and view the mock dashboard.
 
-## 🏗️ Project Structure
+## Project Structure
 ```bash
 lib/
 ├── main.dart # Application entry point. Runs the CliniXApp.
@@ -98,7 +98,7 @@ lib/
 └── clinixicon2.png # The app logo used in the splash screen.
 ```
 
-## 🔌 Data Flow (Mock Implementation)
+## Data Flow (Mock Implementation)
 
 This is a **frontend-only prototype**. All data is generated locally to simulate a connected backend.
 
@@ -106,14 +106,14 @@ This is a **frontend-only prototype**. All data is generated locally to simulate
 - **Battery Data:** The `BatteryScreen()` displays hardcoded values for battery charge (82%) and backup time (3 hrs 45 mins).
 - **Log Data:** The `LogDataScreen()` displays a static list of `ListTile` widgets with example timestamps and power sources.
 
-## 🎨 UI/UX Overview
+## UI/UX Overview
 
 The design prioritizes clarity and user trust in a critical environment:
 - **Color Scheme:** Uses a professional teal/white theme, with red/orange/green in the voltage chart to intuitively signal status.
 - **Navigation:** Simple bottom navigation bar for switching between the three main sections.
 - **Data Visualization:** Utilizes the `fl_chart` package to render a clear, informative line graph for voltage monitoring.
 
-## 🔮 Future Integration Plan
+## Future Integration Plan
 
 This UI is structured to be easily connected to a live backend. The integration path would involve:
 
@@ -122,7 +122,7 @@ This UI is structured to be easily connected to a live backend. The integration 
 3.  **Creating Services:** Adding a `services/` directory with classes to handle API calls (REST, MQTT, or WebSockets) to the CliniX hardware gateway.
 4.  **Replacing Mock Data:** Swapping the hardcoded values and dummy data generators with calls to the new services.
 
-## 📦 Building for Production
+## Building for Production
 
 You can build this prototype into a standalone application for demonstration.
 
@@ -135,7 +135,7 @@ flutter build apk --release
 flutter build web --release
 # The built files will be in the `/build/web` directory and can be deployed to any web server.
 ```
-## 📝 Dependencies
+## Dependencies
 This project uses the following key packages (as defined in pubspec.yaml):
 
 > flutter: The core framework.
@@ -147,6 +147,7 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
 
 
