@@ -52,43 +52,59 @@ Rural clinics face significant challenges due to unstable power grids, directly 
 ### System Architecture
 
 The following diagram illustrates the end-to-end flow of data and control in our system, from the physical power sources to the remote user's dashboard.
+## System Architecture
+
+The following diagram illustrates the end-to-end flow of data and control in our system, from the physical power sources to the remote user's dashboard.
 
 ```mermaid
 flowchart TD
-    subgraph A [Power Sources & Hardware Layer]
+    subgraph PowerSources [Power Sources]
         Grid[Grid Power]
         Solar[Solar Power]
         Battery[Battery Bank]
         Generator[Generator]
     end
 
-    subgraph B [Control & Sensing Layer]
-        Sensors[Voltage/Current Sensors]
+    subgraph ControlLayer [Control Layer]
         PLC[Central PLC<br>Main Controller]
-        Relays[Contactor Relays]
+        PLC_Logic[Source Switching Logic<br>Load Priority Management]
     end
 
-    subgraph C [Gateway & Communication Layer]
-        ESP32[ESP32 Module<br>Data Gateway]
+    subgraph GatewayLayer [Gateway & Communication Layer]
+        ESP32[ESP32 Module]
         GSM[GSM Module]
     end
 
-    subgraph D [Cloud & AI Layer]
-        Broker[MQTT Broker<br>e.g., HiveMQ, Mosquitto]
-        AI[AI Prediction Server<br>Weather Forecast]
+    subgraph CloudLayer [Cloud Services Layer]
+        Broker[MQTT Broker<br>Mosquitto/HiveMQ]
+        AI[AI Prediction Server<br>Weather Forecast API]
     end
 
-    subgraph E [Application Layer]
-        Flutter[Flutter Dashboard App<br>Android, iOS, Web]
+    subgraph ApplicationLayer [Application Layer]
+        Flutter[Flutter Dashboard App<br>Android/iOS/Web]
     end
 
-    A -- Monitors & Controls --> B
-    PLC -- Modbus RTU/Ethernet --> ESP32
-    ESP32 -- SMS --> GSM
-    ESP32 -- MQTT --> Broker
-    ESP32 -- HTTP API Request --> AI
-    AI -- HTTP API Response --> ESP32
-    Broker -- MQTT Subscribe/Publish --> Flutter
+    %% Connections
+    PowerSources <-->|Monitors & Controls| PLC
+    PLC <-->|Modbus RTU/Ethernet| ESP32
+    ESP32 <-->|SMS Communication| GSM
+    ESP32 <-..->|MQTT Pub/Sub| Broker
+    ESP32 <-..->|HTTP REST API| AI
+    Broker <-..->|MQTT over Internet| Flutter
+
+    %% Styling
+    classDef power fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef control fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef gateway fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef cloud fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef app fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+
+    class Grid,Solar,Battery,Generator power
+    class PLC,PLC_Logic control
+    class ESP32,GSM gateway
+    class Broker,AI cloud
+    class Flutter app
+```
 
 ## Hardware Bill of Materials (BOM)
 
@@ -219,7 +235,7 @@ The Flutter dashboard provides a real-time view and control panel.
 │ └── main_program.file
 │
 └── README.md
-
+```
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
