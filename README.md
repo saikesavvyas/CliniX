@@ -58,48 +58,67 @@ The following diagram illustrates the end-to-end flow of data and control in our
 
 ```mermaid
 flowchart TD
-    subgraph PowerSources [Power Sources]
-        Grid[Grid Power]
-        Solar[Solar Power]
-        Battery[Battery Bank]
-        Generator[Generator]
-    end
+    %% Define all nodes with icons and styling
+    Grid[Grid Power]
+    Solar[Solar Power]
+    Battery[Battery Bank]
+    Generator[Generator]
 
-    subgraph ControlLayer [Control Layer]
-        PLC[Central PLC<br>Main Controller]
-        PLC_Logic[Source Switching Logic<br>Load Priority Management]
-    end
+    PLC[Central PLC<br>Main Controller]
+    PLC_Logic[Source Switching Logic<br>Load Priority Management]
 
-    subgraph GatewayLayer [Gateway & Communication Layer]
-        ESP32[ESP32 Module]
-        GSM[GSM Module]
-    end
+    ESP32[ESP32 Module<br>Data Gateway]
+    GSM[GSM Module]
 
-    subgraph CloudLayer [Cloud Services Layer]
-        Broker[MQTT Broker<br>Mosquitto/HiveMQ]
-        AI[AI Prediction Server<br>Weather Forecast API]
-    end
+    Broker[MQTT Broker<br>Mosquitto/HiveMQ]
+    AI[AI Prediction Server<br>Weather Forecast API]
 
-    subgraph ApplicationLayer [Application Layer]
-        Flutter[Flutter Dashboard App<br>Android/iOS/Web]
-    end
+    Flutter[Flutter Dashboard App<br>Android/iOS/Web]
 
-    %% Connections
+    %% Define connections with protocol labels
     PowerSources <-->|Monitors & Controls| PLC
     PLC <-->|Modbus RTU/Ethernet| ESP32
-    ESP32 <-->|SMS Communication| GSM
+    ESP32 <-->|SMS| GSM
     ESP32 <-..->|MQTT Pub/Sub| Broker
     ESP32 <-..->|HTTP REST API| AI
     Broker <-..->|MQTT over Internet| Flutter
 
-    %% Styling
-    classDef power fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef control fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef gateway fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    classDef cloud fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef app fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    %% Group nodes with clean, minimal styling
+    subgraph PowerSources [Power Sources]
+        Grid
+        Solar
+        Battery
+        Generator
+    end
 
-    class Grid,Solar,Battery,Generator power
+    subgraph ControlLayer [Control Layer]
+        PLC
+        PLC_Logic
+    end
+
+    subgraph GatewayLayer [Gateway Layer]
+        ESP32
+        GSM
+    end
+
+    subgraph CloudLayer [Cloud Services]
+        Broker
+        AI
+    end
+
+    subgraph ApplicationLayer [Application Layer]
+        Flutter
+    end
+
+    %% Apply consistent styling
+    classDef source fill:#f8f9fa,stroke:#495057,stroke-width:1.5px,color:#000
+    classDef control fill:#e9ecef,stroke:#6c757d,stroke-width:1.5px,color:#000
+    classDef gateway fill:#dee2e6,stroke:#495057,stroke-width:1.5px,color:#000
+    classDef cloud fill:#f8f9fa,stroke:#495057,stroke-width:1.5px,color:#000
+    classDef app fill:#e9ecef,stroke:#6c757d,stroke-width:1.5px,color:#000
+    classDef protocol fill:#ffffff,stroke:#adb5bd,stroke-width:1px,color:#495057
+
+    class Grid,Solar,Battery,Generator source
     class PLC,PLC_Logic control
     class ESP32,GSM gateway
     class Broker,AI cloud
