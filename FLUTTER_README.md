@@ -9,10 +9,26 @@
 
 A beautiful and responsive Flutter dashboard designed for the **CliniX** system. This frontend prototype demonstrates the user interface for remote monitoring of power sources (Grid, Solar, Battery, Generator), displaying voltage metrics, battery status, and system logs, all powered by realistic mock data.
 
-<p align="center">
-  <img src="../media/app_screenshot.png" alt="CliniX App Screenshot" width="300"/>
-  <!-- Pro Tip: Add a screenshot of your running app and save it in the /media folder -->
-</p>
+## 📸 App Screenshots
+
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+  <div style="text-align: center;">
+    <img src="../media/Splash_Screen.png" width="200"><br>
+    <strong>Splash Screen</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="../media/Dashboard.png" width="200"><br>
+    <strong>Dashboard</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="../media/Battery.png" width="200"><br>
+    <strong>Battery</strong>
+  </div>
+  <div style="text-align: center;">
+    <img src="../media/Log_Data.png" width="200"><br>
+    <strong>Log Data</strong>
+  </div>
+</div>
 
 ## ✨ Features
 
@@ -125,3 +141,4 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
