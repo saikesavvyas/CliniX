@@ -172,11 +172,11 @@ This project involves multiple codebases:
 1.  **Clone the repositories:**
     ```bash
     # For ESP32 Firmware
-    git clone https://github.com/your_username/esp32-firmware-repo.git
+    git clone https://github.com/saikesavvyas/esp32-firmware-repo.git
     # For Flutter Dashboard
-    git clone https://github.com/your_username/flutter-dashboard-repo.git
+    git clone https://github.com/saikesavvyas/Application-repo.git
     # For AI Model
-    git clone https://github.com/your_username/ai-model-repo.git
+    git clone https://github.com/saikesavvyas/ai-model-repo.git
     ```
 
 2.  **Configure the ESP32 Firmware:**
@@ -224,21 +224,22 @@ The Flutter dashboard provides a real-time view and control panel.
 ```bash
 /CliniX/
 │
-├── /firmware/ # ESP32 Arduino Code
+├── /firmware/ 
 │ ├── /src/
 │ │ ├── main.cpp
 │ │ ├── modbus_handler.cpp
 │ │ ├── sms_handler.cpp
-│ │ ├── mqtt_handler.cpp # MQTT communication
+│ │ ├── mqtt_handler.cpp n
 │ │ └── config.h.example
 │ └── platformio.ini
 │
-├── /Application/ # Flutter Application
+├── /Application/ 
 │ ├── /android/
 │ ├── /ios/
 │ ├── /lib/
 │ │ └── main.dart
-│ │ 
+│ │ └── services/
+│       └── mqtt_service.dart 
 │ ├── /linux/
 │ ├── /macos/
 │ ├── /media/
@@ -247,18 +248,17 @@ The Flutter dashboard provides a real-time view and control panel.
 │ │ ├── Log_Data.png
 │ │ ├── Splash_Screen.png
 │ │ └── app_demo.gif
-│ │
 │ ├── /web/
 │ ├── FLUTTER_README.md
 │ ├── pubspec.lock
 │ └── pubspec.yaml
 │
-├── /ai-model/ # Python AI Code
+├── /ai-model/ 
 │ ├── model_training.ipynb
-│ ├── app.py # Flask/FastAPI server
+│ ├── app.py 
 │ └── requirements.txt
 │
-├── /plc-logic/ # PLC Project Files (Vendor Specific)
+├── /plc-logic/ 
 │ └── main_program.file
 │
 ├── LICENSE
@@ -282,7 +282,9 @@ Distributed under the MIT License. See `LICENSE` file for more information. **Th
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - your.email@example.com
+Sai Kesav Vyas - saikesavv@gmail.com |
+Heam Anand A - heamu08@gmail.com |
+Ashwathi Rangan V - ranganashwathi@gmail.com
 
 Project Link: [https://github.com/saikesavvyas/CliniX](https://github.com/saikesavvyas/CliniX)
 
