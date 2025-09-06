@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:telephony/telephony.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'dart:math';
-import 'dart:async';
+import 'package:provider/provider.dart';
+import 'services/mqtt_service.dart';
 
 void main() {
-  runApp(const CliniXApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MQTTService(),
+      child: const CliniXApp(),
+    ),
+  );
 }
 
 class CliniXApp extends StatelessWidget {
@@ -14,6 +16,12 @@ class CliniXApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mqttService = Provider.of<MQTTService>(context, listen: false);
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      mqttService.connect();
+    });
+
     return MaterialApp(
       title: 'CliniX',
       theme: ThemeData(
@@ -23,7 +31,7 @@ class CliniXApp extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16),
         ),
       ),
-      home: const SplashScreen(), // Updated to show splash screen first
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -40,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginScreen()),
@@ -57,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(24), // Curvy edges
+              borderRadius: BorderRadius.circular(24),
               child: Image.asset('assets/clinixicon2.png', height: 100),
             ),
             const SizedBox(height: 20),
@@ -83,9 +91,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-// LoginScreen and rest of your code remain unchanged
-// ...
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -155,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                                 MaterialPageRoute(builder: (context) => const HomePage()),
                               );
                             },
-                            icon: const Icon(Icons.arrow_forward, color: Colors.white ),
+                            icon: const Icon(Icons.arrow_forward, color: Colors.white),
                             label: const Text('LOG IN', style: TextStyle(color: Colors.white)),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -187,19 +192,7 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class BackgroundPainter extends StatelessWidget {
-  const BackgroundPainter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _GradientWavesPainter(),
-      child: Container(),
-    );
-  }
-}
-
-class _GradientWavesPainter extends CustomPainter {
+class BackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
@@ -317,17 +310,18 @@ class AppDrawer extends StatelessWidget {
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
-  List<FlSpot> _generateDummyData() {
-    final List<FlSpot> spots = [];
-    for (int i = 0; i < 12; i++) {
-      spots.add(FlSpot(i.toDouble(), (Random().nextDouble() * 50) + 200));
+  List<FlSpot> _generateChartData(List<double> voltageData) {
+    List<FlSpot> spots = [];
+    for (int i = 0; i < voltageData.length; i++) {
+      spots.add(FlSpot(i.toDouble(), voltageData[i]));
     }
     return spots;
   }
 
   @override
   Widget build(BuildContext context) {
-    final spots = _generateDummyData();
+    final mqttService = Provider.of<MQTTService>(context);
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -336,7 +330,10 @@ class DashboardScreen extends StatelessWidget {
           child: ListTile(
             leading: const Icon(Icons.electrical_services, size: 40),
             title: const Text('Source in Use:'),
-            subtitle: const Text('Grid', style: TextStyle(fontSize: 20)),
+            subtitle: Text(
+              mqttService.currentSource,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const SizedBox(height: 16),
@@ -354,7 +351,7 @@ class DashboardScreen extends StatelessWidget {
                     LineChartData(
                       lineBarsData: [
                         LineChartBarData(
-                          spots: spots,
+                          spots: _generateChartData(mqttService.voltageData),
                           isCurved: true,
                           barWidth: 3,
                           color: Colors.teal,
@@ -393,7 +390,10 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text('2025-08-03 12:45 PM', style: TextStyle(color: Colors.grey[600]))
+                Text(
+                  'Current: ${mqttService.currentVoltage.toStringAsFixed(1)} V',
+                  style: TextStyle(color: Colors.grey[600], fontWeight: FontWeight.bold),
+                )
               ],
             ),
           ),
@@ -408,6 +408,8 @@ class BatteryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mqttService = Provider.of<MQTTService>(context);
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -415,7 +417,11 @@ class BatteryScreen extends StatelessWidget {
           elevation: 4,
           child: ListTile(
             leading: const Icon(Icons.battery_charging_full, size: 40),
-            title: const Text('Battery Charge: 82%'),
+            title: const Text('Battery Charge:'),
+            subtitle: Text(
+              '${mqttService.batteryLevel}%',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const SizedBox(height: 16),
@@ -424,7 +430,10 @@ class BatteryScreen extends StatelessWidget {
           child: ListTile(
             leading: const Icon(Icons.access_time, size: 40),
             title: const Text('Predicted Backup Time'),
-            subtitle: const Text('3 hrs 45 mins', style: TextStyle(fontSize: 20)),
+            subtitle: Text(
+              '${mqttService.backupTime} mins',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const SizedBox(height: 16),
