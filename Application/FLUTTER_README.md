@@ -14,7 +14,7 @@ A beautiful and responsive Flutter dashboard designed for the **CliniX** system.
 Watch the UI Showcase in this demo video
 
 <p align="center">
-  <img src="/media/app_demo.gif" alt="CliniX App Demo" width="300"/>
+  <img src="/Application/media/app_demo.gif" alt="CliniX App Demo" width="300"/>
 </p>
 
 ##  Screen Gallery
@@ -28,10 +28,10 @@ Watch the UI Showcase in this demo video
       <td align="center"><strong>Log Data</strong></td>
     </tr>
     <tr>
-      <td><img src="/media/Splash_Screen.png" width="200"></td>
-      <td><img src="/media/Dashboard.png" width="200"></td>
-      <td><img src="/media/Battery.png" width="200"></td>
-      <td><img src="/media/Log_Data.png" width="200"></td>
+      <td><img src="/Application/media/Splash_Screen.png" width="200"></td>
+      <td><img src="/Application/media/Dashboard.png" width="200"></td>
+      <td><img src="/Application/media/Battery.png" width="200"></td>
+      <td><img src="/Application/media/Log_Data.png" width="200"></td>
     </tr>
   </table>
 </div>
@@ -147,6 +147,7 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
 
 
