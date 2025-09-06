@@ -282,9 +282,11 @@ Distributed under the MIT License. See `LICENSE` file for more information. **Th
 
 ## Contact
 
-Sai Kesav Vyas - saikesavv@gmail.com |
-Heam Anand A - heamu08@gmail.com |
-Ashwathi Rangan V - ranganashwathi@gmail.com
+| Sai Kesav Vyas | saikesavv@gmail.com |
+| :--- | :--- |
+| Heam Anand A | heamu08@gmail.com |
+| Ashwathi Rangan V | ranganashwathi@gmail.com|
+
 
 Project Link: [https://github.com/saikesavvyas/CliniX](https://github.com/saikesavvyas/CliniX)
 
