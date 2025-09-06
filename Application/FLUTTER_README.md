@@ -80,22 +80,25 @@ The app will launch with a 5-second splash screen and then proceed to the login 
 
 ## Project Structure
 ```bash
-lib/
-├── main.dart # Application entry point. Runs the CliniXApp.
-├── 📂 (Implicit Models) # Data structures are defined within their screens.
-│ # e.g., FlSpot for chart data.
-├── 📂 (UI Screens) # All UI is built within the following stateful/stateless widgets:
-│ ├── SplashScreen() # The initial 5-second loading screen.
-│ ├── LoginScreen() # The authentication UI with a custom animated background.
-│ └── HomePage() # The main scaffold with navigation.
-│ ├── DashboardScreen() # Main screen with voltage graph and source status.
-│ ├── BatteryScreen() # Screen showing battery % and predicted backup time.
-│ └── LogDataScreen() # Screen displaying a historical log of events.
-├── 📂 (Custom Painters) # Custom UI elements.
-│ └── _GradientWavesPainter # Paints the background for the LoginScreen.
-└── 📂 (Assets) # Should contain your app's icons and images.
-└── assets/
-└── clinixicon2.png # The app logo used in the splash screen.
+/Application/ # Flutter Application
+ ├── /android/
+ ├── /ios/
+ ├── /lib/
+ │ └── main.dart
+ │ 
+ ├── /linux/
+ ├── /macos/
+ ├── /media/
+ │ ├── Battery.png
+ │ ├── Dashboard.png
+ │ ├── Log_Data.png
+ │ ├── Splash_Screen.png
+ │ └── app_demo.gif
+ │
+ ├── /web/
+ ├── FLUTTER_README.md
+ ├── pubspec.lock
+ └── pubspec.yaml
 ```
 
 ## Data Flow (Mock Implementation)
@@ -147,6 +150,7 @@ This project uses the following key packages (as defined in pubspec.yaml):
 > permission_handler: (Planned for handling device permissions).
 
 For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
+
 
 
 
