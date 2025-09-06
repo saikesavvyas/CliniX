@@ -1,23 +1,24 @@
-# CliniX Dashboard (Frontend UI)
+# CliniX Dashboard 
 
-> A Flutter UI prototype for monitoring the CliniX Intelligent Power Management System.
+> A Flutter UI for monitoring the CliniX Intelligent Power Management System with real-time MQTT integration.
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Android__%7C__iOS__%7C__Web-blue)
-![Status](https://img.shields.io/badge/Status-UI%20Prototype%20(Mock%20Data)-important)
+![Status](https://img.shields.io/badge/Status-Live%20MQTT%20Integration-success)
 ![License](https://img.shields.io/badge/License-MIT-teal)
+![MQTT](https://img.shields.io/badge/Protocol-MQTT-orange)
 
-A beautiful and responsive Flutter dashboard designed for the **CliniX** system. This frontend prototype demonstrates the user interface for remote monitoring of power sources (Grid, Solar, Battery, Generator), displaying voltage metrics, battery status, and system logs, all powered by realistic mock data.
+A responsive Flutter dashboard for the **CliniX** system that now features **real-time MQTT integration**. This application connects to a cloud MQTT broker to display live power source status, voltage metrics, battery levels, and predicted backup time.
 
-##  App Demo
+## App Demo
 
-Watch the UI Showcase in this demo video
+Watch the UI showcase with real-time data flow:
 
 <p align="center">
   <img src="/Application/media/app_demo.gif" alt="CliniX App Demo" width="300"/>
 </p>
 
-##  Screen Gallery
+## Screen Gallery
 
 <div align="center">
   <table>
@@ -36,27 +37,43 @@ Watch the UI Showcase in this demo video
   </table>
 </div>
 
-##  Features
+## Features
 
-- **Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
-- **Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
-- **Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
-- **Predicted Backup Time:** Displays estimated battery runtime during outages.
-- **Historical Logs:** View a history of power source switching events.
-- **Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
+- **Real-time MQTT Integration:** Live connection to cloud broker for dynamic data updates
+- **Live Voltage Monitoring:** Real-time voltage graph with color-coded status indicators
+- **Dynamic Battery Tracking:** Continuously updating battery percentage and backup time calculation
+- **Smart Source Switching:** Automatic power source rotation simulation (Grid, Solar, Battery, Generator)
+- **Responsive Design:** Adaptive UI that works on mobile, tablet, and desktop
+- **Modern Material Design:** Professional teal-themed interface with smooth animations
+
+## Architecture
+
+```mermaid
+graph LR
+    A[ESP32 Hardware] -->|Publishes Data| B[MQTT Broker]
+    B -->|Pushes Messages| C[Flutter App]
+    C -->|Displays| D[Real-time Dashboard]
+    
+    subgraph "MQTT Topics"
+        B --> T1[clinix/power/source]
+        B --> T2[clinix/power/voltage]
+        B --> T3[clinix/power/battery]
+    end
+```
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Flutter SDK:** Ensure you have Flutter installed on your machine. This project is built with Flutter 3.13.0+.
-- **An IDE:** such as Android Studio, VS Code, or IntelliJ IDEA with the Flutter plugin.
+- **Flutter SDK:** Version 3.13.0 or higher
+- **MQTT Broker:** Connected to HiveMQ Cloud (public broker configured)
+- **ESP32 Hardware:** Optional for full system integration
 
 ### Installation & Running the App
 
-1.  **Navigate to the dashboard directory** from the project root:
+1.  **Navigate to the application directory:**
     ```bash
-    cd dashboard
+    cd Application
     ```
 
 2.  **Install the project dependencies:**
@@ -64,96 +81,160 @@ Watch the UI Showcase in this demo video
     flutter pub get
     ```
 
-3.  **Run the application on your preferred device:**
+3.  **Run the application:**
     ```bash
-    # Run on a connected Android device/emulator
+    # Android device/emulator
     flutter run
 
-    # Run in a web browser
+    # Web browser
     flutter run -d chrome
 
-    # Run on an iOS simulator (macOS only)
+    # iOS simulator (macOS only)
     flutter run -d iPhone
     ```
 
-The app will launch with a 5-second splash screen and then proceed to the login screen. You can use any credentials to log in and view the mock dashboard.
+The app will automatically connect to the MQTT broker and start displaying real-time data.
 
 ## Project Structure
+
 ```bash
-/Application/ # Flutter Application
- ├── /android/
- ├── /ios/
- ├── /lib/
- │ └── main.dart
- │ 
- ├── /linux/
- ├── /macos/
- ├── /media/
- │ ├── Battery.png
- │ ├── Dashboard.png
- │ ├── Log_Data.png
- │ ├── Splash_Screen.png
- │ └── app_demo.gif
- │
- ├── /web/
- ├── FLUTTER_README.md
- ├── pubspec.lock
- └── pubspec.yaml
+Application/
+├── lib/
+│   ├── main.dart                 
+│   └── services/
+│       └── mqtt_service.dart     
+├── assets/
+│   └── clinixicon2.png          
+├── media/                       
+│   ├── Splash_Screen.png
+│   ├── Dashboard.png
+│   ├── Battery.png
+│   ├── Log_Data.png
+│   └── app_demo.gif
+├── FLUTTER_README.md
+├── pubspec.lock
+└── pubspec.yaml                  
 ```
+## MQTT Integration
 
-## Data Flow (Mock Implementation)
+### Topics Subscribed
 
-This is a **frontend-only prototype**. All data is generated locally to simulate a connected backend.
+| Topic | Data Format | Description | Update Frequency |
+|-------|-------------|-------------|------------------|
+| `clinix/power/source` | `String` | Current active power source<br>(Grid/Solar/Battery/Generator) | Every 2 seconds |
+| `clinix/power/voltage` | `JSON: {"voltage": 220.5, "timestamp": 1701799823}` | Live voltage readings with timestamps | Every 2 seconds |
+| `clinix/power/battery` | `JSON: {"level": 82, "backup_time": 180}` | Battery percentage and calculated backup time | Every 2 seconds |
 
-- **Dashboard Data:** The `DashboardScreen()` uses a `_generateDummyData()` method to create a list of `FlSpot` points, simulating voltage readings over time.
-- **Battery Data:** The `BatteryScreen()` displays hardcoded values for battery charge (82%) and backup time (3 hrs 45 mins).
-- **Log Data:** The `LogDataScreen()` displays a static list of `ListTile` widgets with example timestamps and power sources.
+### Data Flow Process
 
-## UI/UX Overview
+1.  **Automatic Connection Establishment**
+    ```dart
+   
+    await client.connect(); 
+    client.subscribe('clinix/power/#', MqttQos.atMostOnce);
+    ```
 
-The design prioritizes clarity and user trust in a critical environment:
-- **Color Scheme:** Uses a professional teal/white theme, with red/orange/green in the voltage chart to intuitively signal status.
-- **Navigation:** Simple bottom navigation bar for switching between the three main sections.
-- **Data Visualization:** Utilizes the `fl_chart` package to render a clear, informative line graph for voltage monitoring.
+2.  **Real-time Message Processing**
+    ```dart
+    client.updates!.listen((List<MqttReceivedMessage<MqttMessage>> messages) {
+      final String topic = messages[0].topic;
+      final String payload = decodePayload(messages[0]);
+      
+      if (topic == 'clinix/power/source') {
+        updatePowerSource(payload); 
+      }
+    });
+    ```
 
-## Future Integration Plan
+3.  **Dynamic Data Visualization**
+    - Voltage graph maintains a rolling window of 20 data points
+    - Color coding applied in real-time based on voltage values
+    - Battery backup time calculated automatically: `backupTime = batteryLevel * 2.2`
 
-This UI is structured to be easily connected to a live backend. The integration path would involve:
+### Configuration Details
 
-1.  **Adding Data Models:** Creating formal Dart model classes (e.g., `PowerData`, `BatteryStatus`, `LogEntry`) in a `models/` directory.
-2.  **Implementing State Management:** Introducing a state management solution like `Provider` or `Bloc` to manage the app's state and fetch data.
-3.  **Creating Services:** Adding a `services/` directory with classes to handle API calls (REST, MQTT, or WebSockets) to the CliniX hardware gateway.
-4.  **Replacing Mock Data:** Swapping the hardcoded values and dummy data generators with calls to the new services.
+**Broker Settings:**
+```dart
+final String broker = 'broker.hivemq.com'; 
+final int port = 1883;
+final String clientId = 'flutter_client_${DateTime.now().millisecondsSinceEpoch}';
+```
+###  Quality of Service (QoS) Configuration
 
+**MQTT QoS Levels Implemented:**
+```dart
+
+client.subscribe('clinix/power/source', MqttQos.atMostOnce);    // QoS 0
+client.subscribe('clinix/power/voltage', MqttQos.atMostOnce);   // QoS 0  
+client.subscribe('clinix/power/battery', MqttQos.atMostOnce);   // QoS 0
+```
+## UI/UX Features  
+
+### Color-coded Voltage Indicators  
+- 🔴 **Red:** Below 210V (Critical)  
+- 🟠 **Orange:** 210–230V (Warning)  
+- 🟢 **Green:** Above 230V (Optimal)  
+
+### Live Data Visualization  
+- Dynamic line chart showing voltage trends over time  
+
+### Smooth Animations  
+- Professional transitions between screens and data updates  
+
+### Responsive Layout  
+- Adapts to different screen sizes and orientations  
+
+---
+
+##  Technical Implementation  
+
+### State Management  
+- **Provider Pattern:** Efficient state management for real-time data updates  
+
+### MQTT Service  
+- Dedicated service class handling broker connection and message parsing  
+
+### Automatic Reconnection  
+- Handles connection drops and automatic reconnection logic
+
+## Dependencies
+
+```yaml
+dependencies:
+  flutter: 
+  mqtt_client: ^10.0.0        
+  provider: ^6.0.5            
+  fl_chart: ^0.12.0           
+```
 ## Building for Production
 
-You can build this prototype into a standalone application for demonstration.
-
-**Build an Android APK:**
+### Android APK:
 ```bash
 flutter build apk --release
 ```
-**Build for Web**
+### Web Deployment:
 ```bash
-flutter build web --release
-# The built files will be in the `/build/web` directory and can be deployed to any web server.
+flutter build ipa --release
 ```
-## Dependencies
-This project uses the following key packages (as defined in pubspec.yaml):
+### iOS App Bundle:
+```bash
+flutter build ipa --release
+```
+## Future Enhancements  
 
-> flutter: The core framework.
+- **ESP32 Integration:** Connect to actual hardware sensors for real data  
+- **Historical Data Storage:** Implement local database for trend analysis  
+- **Push Notifications:** Alert system for critical power events  
+- **Multi-clinic Support:** Manage multiple clinic power systems from single dashboard  
+- **Advanced Analytics:** Predictive maintenance and energy usage forecasts  
 
-> fl_chart: For rendering the interactive voltage line chart.
+---
 
-> telephony: (Planned for future SMS features).
+## License  
 
-> permission_handler: (Planned for handling device permissions).
+This project is part of the **CliniX Power Management System**.  
+See main repository for licensing details.  
 
-For information about the hardware system this UI is designed to monitor, including the PLC, ESP32, and AI model, please see the main README.md.
-
-
-
-
-
-
-
+> **Note:** This application is configured to use the public HiveMQ broker for demonstration purposes.  
+> For production deployment, replace with your dedicated MQTT broker configuration in  
+> `lib/services/mqtt_service.dart`.  
