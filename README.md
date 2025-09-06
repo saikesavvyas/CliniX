@@ -222,7 +222,7 @@ The Flutter dashboard provides a real-time view and control panel.
 
 ## Project Structure
 ```bash
-/your-repo-name/
+/CliniX/
 │
 ├── /firmware/ # ESP32 Arduino Code
 │ ├── /src/
@@ -233,14 +233,25 @@ The Flutter dashboard provides a real-time view and control panel.
 │ │ └── config.h.example
 │ └── platformio.ini
 │
-├── /dashboard/ # Flutter Application
+├── /Application/ # Flutter Application
+│ ├── /android/
+│ ├── /ios/
 │ ├── /lib/
 │ │ └── main.dart
-│ ├── android
-│ ├── ios
+│ │ 
+│ ├── /linux/
+│ ├── /macos/
+│ ├── /media/
+│ │ ├── Battery.png
+│ │ ├── Dashboard.png
+│ │ ├── Log_Data.png
+│ │ ├── Splash_Screen.png
+│ │ └── app_demo.gif
+│ │
+│ ├── /web/
+│ ├── FLUTTER_README.md
 │ ├── pubspec.lock
-│ ├── pubspec.yaml
-│ └── FLUTTER_README.md
+│ └── pubspec.yaml
 │
 ├── /ai-model/ # Python AI Code
 │ ├── model_training.ipynb
@@ -250,6 +261,7 @@ The Flutter dashboard provides a real-time view and control panel.
 ├── /plc-logic/ # PLC Project Files (Vendor Specific)
 │ └── main_program.file
 │
+├── LICENSE
 └── README.md
 ```
 
