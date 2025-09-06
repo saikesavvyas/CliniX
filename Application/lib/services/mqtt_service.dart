@@ -26,7 +26,6 @@ class MQTTService {
       await client!.connect();
       print('Connected to MQTT Broker');
 
-      // Subscribe to topics
       client!.subscribe('clinix/power/source', MqttQos.atMostOnce);
       client!.subscribe('clinix/power/voltage', MqttQos.atMostOnce);
       client!.subscribe('clinix/power/battery', MqttQons.atMostOnce);
@@ -38,7 +37,6 @@ class MQTTService {
 
         print('Received: $payload from $topic');
 
-        // Handle different topics
         if (topic == 'clinix/power/source') {
           currentSource = payload;
         } else if (topic == 'clinix/power/voltage') {
