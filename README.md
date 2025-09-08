@@ -129,7 +129,6 @@ flowchart TD
 | **ESP32 Development Board** | 1 | Serves as communication gateway and SMS module controller. |
 | **GSM Module (SIM800L / SIM900A)** | 1 | For sending SMS alerts. |
 | **Voltage Sensors (AC & DC)** | 4 | To detect presence of Grid, Solar output, Battery voltage, Generator output. |
-| **Current Sensors (AC)** | 4 | e.g., SCT-013, to measure load on each source. |
 | **Contactors / Relays** | 6 | For switching loads between sources (4P) and shedding Tier 2/3 loads (2P). Rated for your clinic's current. |
 | **DC Power Supply** | 1 | 24V/12V to power the PLC, ESP32, sensors, and contactor coils. |
 | **Enclosure** | 1 | IP-rated enclosure for safety. |
@@ -258,9 +257,10 @@ The Flutter dashboard provides a real-time view and control panel.
 │ ├── app.py 
 │ └── requirements.txt
 │
-├── /plc-logic/ 
-│ └── main_program.file
-│
+├── /PLC Simulation/ 
+│ └── /CliniX Ladder Logic/         **REQUIRES ISPSOFT SOFTWARE TO ACCESS THE CONTENTS OF THE FOLDER**
+│ └── /Images/                     **LADDER LOGIC SCREENSHOTS FOR REFERENCE ( IF ISPSOFT IS NOT AVAILABLE)**
+│ 
 ├── LICENSE
 └── README.md
 ```
@@ -285,7 +285,8 @@ Distributed under the MIT License. See `LICENSE` file for more information. **Th
 | Sai Kesav Vyas | saikesavv@gmail.com |
 | :--- | :--- |
 | Heam Anand A | heamu08@gmail.com |
-| Ashwathi Rangan V | ranganashwathi@gmail.com|
+| Ashwathi Rangan V | ranganashwathi@gmail.com |
+| Sharmila R | milasharmila2006@gmail.com |
 
 
 Project Link: [https://github.com/saikesavvyas/CliniX](https://github.com/saikesavvyas/CliniX)
