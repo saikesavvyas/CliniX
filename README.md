@@ -252,14 +252,14 @@ The Flutter dashboard provides a real-time view and control panel.
 │ ├── pubspec.lock
 │ └── pubspec.yaml
 │
-├── /ai-model/ 
-│ ├── model_training.ipynb
-│ ├── app.py 
+├── /AI Model/ 
+│ ├── ModelPrediction.py
+│ ├── ModelTraining.py
 │ └── requirements.txt
 │
 ├── /PLC Simulation/ 
-│ └── /CliniX Ladder Logic/         **REQUIRES ISPSOFT SOFTWARE TO ACCESS THE CONTENTS OF THE FOLDER**
-│ └── /Images/                     **LADDER LOGIC SCREENSHOTS FOR REFERENCE ( IF ISPSOFT IS NOT AVAILABLE)**
+│ └── /CliniX Ladder Logic/      **REQUIRES ISPSOFT SOFTWARE TO ACCESS THE CONTENTS OF THE FOLDER**
+│ └── /Images/                   **LADDER LOGIC SCREENSHOTS FOR REFERENCE ( IF ISPSOFT IS NOT AVAILABLE)**
 │ 
 ├── LICENSE
 └── README.md
