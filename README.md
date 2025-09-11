@@ -225,7 +225,11 @@ The Flutter dashboard provides a real-time view and control panel.
 │
 ├── /Firmware/ 
 │ ├── /src/
+| | ├── encoders.h
+| | ├── labels.h
 │ │ ├── main.cpp
+| | ├── model_data.h
+| | ├── scaler.h
 │ │ ├── modbus_handler.cpp
 │ │ ├── sms_handler.cpp
 │ │ ├── mqtt_handler.cpp n
