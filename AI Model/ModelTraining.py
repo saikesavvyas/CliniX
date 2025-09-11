@@ -1,92 +1,100 @@
+# train_model.py
 import pandas as pd
 import numpy as np
-import joblib   # for saving encoders and scalers
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.callbacks import EarlyStopping
+import tensorflow as tf
+from tensorflow.keras import layers, models
+import pickle
 
-# ==========================
-# 1. Load Dataset
-# ==========================
-data = pd.read_excel(<MENTION YOUR DATASET PATH HERE>)
+# ======================
+# Load dataset
+# ======================
+df = pd.read_excel("ClinicDataset4.xlsx", sheet_name="Sheet1")
 
-# Features (X) and Labels (y)
-X = data.iloc[:, :-1]   # all features
-y = data.iloc[:, -1]    # output (SourceOrder)
+input_cols = df.columns[:-1].tolist()
+target_col = df.columns[-1]
 
-# ==========================
-# 2. Encode Categorical Features
-# ==========================
+X = df[input_cols].copy()
+y = df[target_col].copy()
+
+# ======================
+# Encode categorical columns
+# ======================
 encoders = {}
-for col in X.columns:
-    if X[col].dtype == 'object':
-        le = LabelEncoder()
-        X[col] = le.fit_transform(X[col])
-        encoders[col] = le
+for col in X.select_dtypes(include=["object", "category"]).columns:
+    le = LabelEncoder()
+    X[col] = le.fit_transform(X[col].astype(str))
+    encoders[col] = le
 
 # Save encoders
-joblib.dump(encoders, "encoders.pkl")
+with open("encoders.pkl", "wb") as f:
+    pickle.dump(encoders, f)
 
-# Encode output labels
+# ======================
+# Encode target
+# ======================
 y_encoder = LabelEncoder()
 y = y_encoder.fit_transform(y)
-y = to_categorical(y)
 
-# Save output encoder
-joblib.dump(y_encoder,"y_encoder.pkl")
+with open("y_encoder.pkl", "wb") as f:
+    pickle.dump(y_encoder, f)
 
-# ==========================
-# 3. Train/Test Split
-# ==========================
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Scale numerical features
+# ======================
+# Scale numeric features
+# ======================
 scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test  = scaler.transform(X_test)
+X_scaled = scaler.fit_transform(X)
 
-# Save scaler
-joblib.dump(scaler, "scaler.pkl")
+with open("scaler.pkl", "wb") as f:
+    pickle.dump(scaler, f)
 
-# ==========================
-# 4. Build Neural Network
-# ==========================
-model = Sequential([
-    Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
-    Dropout(0.3),
-    Dense(32, activation='relu'),
-    Dropout(0.2),
-    Dense(y.shape[1], activation='softmax')
-])
-
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-# ==========================
-# 5. Train Model
-# ==========================
-es = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-
-history = model.fit(
-    X_train, y_train,
-    validation_data=(X_test, y_test),
-    epochs=100,
-    batch_size=16,
-    callbacks=[es],
-    verbose=1
+# ======================
+# Train/test split
+# ======================
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, train_size=1200, test_size=300, stratify=y, random_state=42
 )
 
-# ==========================
-# 6. Evaluate Model
-# ==========================
-loss, acc = model.evaluate(X_test, y_test, verbose=0)
-print(f"✅ Test Accuracy: {acc*100:.2f}%")
+# ======================
+# Build model
+# ======================
+model = models.Sequential([
+    layers.Input(shape=(X_train.shape[1],)),
+    layers.Dense(32, activation="relu"),
+    layers.Dense(16, activation="relu"),
+    layers.Dense(len(np.unique(y)), activation="softmax")
+])
 
-# ==========================
-# 7. Save Model
-# ==========================
-model.save("Power_Source_Model.h5")
-print("💾 Model saved as Power_Source_Model.h5")
-print("Encoders and Scalers are also saved.")
+model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+model.fit(X_train, y_train, epochs=100, batch_size=16, validation_data=(X_test, y_test))
+
+# ======================
+# Save model
+# ======================
+model.save("CliniX_model.h5")
+
+# ======================
+# Convert to quantized TFLite
+# ======================
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.target_spec.supported_types = [tf.int8]
+converter.inference_input_type = tf.int8
+converter.inference_output_type = tf.int8
+
+def representative_data_gen():
+    for i in range(100):
+        yield [X_train[i:i+1].astype(np.float32)]
+converter.representative_dataset = representative_data_gen
+
+tflite_model = converter.convert()
+open("CliniX_model_int8.tflite", "wb").write(tflite_model)
+
+# ======================
+# Convert .tflite to .h
+# ======================
+b = open("CliniX_model_int8.tflite", "rb").read()
+arr = ", ".join(str(x) for x in b)
+h = f"const unsigned char model_tflite[] = {{{arr}}};\nconst unsigned int model_tflite_len = {len(b)};\n"
+open("model_data.h", "w", encoding="utf-8").write(h)
