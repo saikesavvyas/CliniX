@@ -233,7 +233,6 @@ The Flutter dashboard provides a real-time view and control panel.
 │ │ ├── modbus_handler.cpp
 │ │ ├── sms_handler.cpp
 │ │ ├── mqtt_handler.cpp n
-│ │ └── config.h.example
 │ └── platformio.ini
 │
 ├── /Application/ 
