@@ -1,0 +1,7 @@
+#THIS FILE CONSISTS OF THE REQUIRED MODULES AND PACKAGES REQUIRED TO TRAIN OUR AI MODEL
+tensorflow
+pickle
+numpy
+pandas
+scikit-learn
+json
