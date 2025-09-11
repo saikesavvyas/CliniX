@@ -223,7 +223,7 @@ The Flutter dashboard provides a real-time view and control panel.
 ```bash
 /CliniX/
 │
-├── /firmware/ 
+├── /Firmware/ 
 │ ├── /src/
 │ │ ├── main.cpp
 │ │ ├── modbus_handler.cpp
@@ -259,7 +259,7 @@ The Flutter dashboard provides a real-time view and control panel.
 │
 ├── /PLC Simulation/ 
 │ └── /CliniX Ladder Logic/      **REQUIRES ISPSOFT SOFTWARE TO ACCESS THE CONTENTS OF THE FOLDER**
-│ └── /Images/                   **LADDER LOGIC SCREENSHOTS FOR REFERENCE ( IF ISPSOFT IS NOT AVAILABLE)**
+│ └── /Images/                   **LADDER LOGIC SCREENSHOTS FOR REF. (IF ISPSOFT IS NOT AVAILABLE)**
 │ 
 ├── LICENSE
 └── README.md
