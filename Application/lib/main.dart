@@ -15,6 +15,276 @@ void main() {
     ),
   );
 }
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage>
+    with SingleTickerProviderStateMixin {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
+
+  String role = 'Doctor';
+  final List<String> roles = ['Administrator', 'Doctor', 'Nurse', 'Technician'];
+
+  late AnimationController _animationController;
+  late Animation<Color?> _gradientAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(seconds: 6))
+      ..repeat(reverse: true);
+
+    _gradientAnimation = ColorTween(
+      begin: const Color(0xFF009688),
+      end: const Color(0xFF4DB6AC),
+    ).animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              // Animated gradient background
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      _gradientAnimation.value ?? const Color(0xFF009688),
+                      const Color(0xFFB2DFDB),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+              // Floating icons
+              Positioned(
+                top: 60,
+                left: 30,
+                child: Opacity(
+                  opacity: 0.1,
+                  child: Icon(Icons.local_hospital, size: 120, color: Colors.white),
+                ),
+              ),
+              Positioned(
+                bottom: 80,
+                right: 20,
+                child: Opacity(
+                  opacity: 0.1,
+                  child: Icon(Icons.healing, size: 100, color: Colors.white),
+                ),
+              ),
+              Positioned(
+                top: 180,
+                right: 50,
+                child: Opacity(
+                  opacity: 0.05,
+                  child: Icon(Icons.favorite, size: 140, color: Colors.white),
+                ),
+              ),
+              // Center glass card
+              Center(
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.all(28),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.85),
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 16,
+                          offset: Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF00796B),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          _buildTextField(
+                              controller: usernameController,
+                              label: 'Username',
+                              icon: Icons.person,
+                              validator: (value) =>
+                              value!.isEmpty ? 'Enter username' : null),
+                          const SizedBox(height: 16),
+                          _buildDropdown(),
+                          const SizedBox(height: 16),
+                          _buildTextField(
+                              controller: phoneController,
+                              label: 'Phone Number',
+                              icon: Icons.phone,
+                              keyboardType: TextInputType.phone,
+                              validator: (value) =>
+                              value!.isEmpty ? 'Enter phone number' : null),
+                          const SizedBox(height: 16),
+                          _buildTextField(
+                              controller: passwordController,
+                              label: 'Password',
+                              icon: Icons.lock,
+                              obscureText: true,
+                              validator: (value) => value!.length < 6
+                                  ? 'Minimum 6 characters'
+                                  : null),
+                          const SizedBox(height: 16),
+                          _buildTextField(
+                              controller: confirmPasswordController,
+                              label: 'Confirm Password',
+                              icon: Icons.lock_outline,
+                              obscureText: true,
+                              validator: (value) => value !=
+                                  passwordController.text
+                                  ? 'Passwords do not match'
+                                  : null),
+                          const SizedBox(height: 28),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 52,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xFF00796B),
+                                      Color(0xFF004D40),
+                                    ],
+                                  ),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    'Sign Up',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  // Navigate to dashboard
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePage()),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text(
+                              'Already have an account? Log in',
+                              style: TextStyle(color: Color(0xFF00796B)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+    bool obscureText = false,
+    TextInputType keyboardType = TextInputType.text,
+    String? Function(String?)? validator,
+  }) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(icon, color: const Color(0xFF00796B)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+      obscureText: obscureText,
+      keyboardType: keyboardType,
+      validator: validator,
+    );
+  }
+
+  Widget _buildDropdown() {
+    return DropdownButtonFormField<String>(
+      value: role,
+      decoration: InputDecoration(
+        labelText: 'Role',
+        prefixIcon: const Icon(Icons.work, color: Color(0xFF00796B)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+      items: roles
+          .map((r) => DropdownMenuItem(
+        value: r,
+        child: Text(r),
+      ))
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          role = value!;
+        });
+      },
+    );
+  }
+}
 
 // App State Management
 class AppState with ChangeNotifier {
@@ -242,13 +512,13 @@ class RoleSelectionScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
                       );
                     },
                     child: Text(
-                      AppLocalizations.of(context)?.translate('haveAccount') ?? 'Already have an account? Sign in',
+                      AppLocalizations.of(context)?.translate('haveAccount') ?? 'Do not have an account? Sign in',
                       style: const TextStyle(color: Colors.teal),
                     ),
                   )
@@ -313,6 +583,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _clinicIdController = TextEditingController();
+
   UserRole? _selectedRole;
 
   @override
@@ -369,7 +641,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         value: _selectedRole,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person_outline),
-                          labelText: AppLocalizations.of(context)?.translate('role') ?? 'Role',
+                          labelText: AppLocalizations.of(context)?.translate('Role') ?? 'Role',
                           border: const OutlineInputBorder(),
                         ),
                         items: UserRole.values.map((UserRole role) {
@@ -403,6 +675,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: const OutlineInputBorder(),
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _clinicIdController,
+                        keyboardType: TextInputType.number, // assuming Clinic ID is numeric
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.badge), // better icon for ID
+                          hintText: AppLocalizations.of(context)?.translate('clinicId') ?? 'Clinic ID',
+                          border: const OutlineInputBorder(),
+                        ),
+                      ),
+
                       const SizedBox(height: 25),
                       SizedBox(
                         width: double.infinity,
@@ -851,85 +1134,223 @@ class _SettingsScreenState extends State<SettingsScreen> {
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
+
   List<FlSpot> _generateDummyData() {
-    return List.generate(
-      12,
-          (i) => FlSpot(i.toDouble(), (Random().nextDouble() * 50) + 200),
-    );
+  return List.generate(
+  12,
+  (i) => FlSpot(i.toDouble(), (Random().nextDouble() * 50) + 200),
+  );
   }
 
   @override
   Widget build(BuildContext context) {
-    final spots = _generateDummyData();
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        _infoCard(
-          icon: Icons.electrical_services,
-          title: AppLocalizations.of(context)?.translate('sourceInUse') ?? 'Source in Use',
-          value: AppLocalizations.of(context)?.translate('grid') ?? 'Grid',
-        ),
-        const SizedBox(height: 16),
-        Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppLocalizations.of(context)?.translate('voltage') ?? 'Voltage (V)',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: 200,
-                  child: LineChart(
-                    LineChartData(
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: spots,
-                          isCurved: true,
-                          barWidth: 3,
-                          color: Colors.teal,
-                          belowBarData: BarAreaData(show: false),
-                          dotData: FlDotData(show: false),
-                        ),
-                      ],
-                      gridData: FlGridData(show: true),
-                      borderData: FlBorderData(show: false),
-                      titlesData: FlTitlesData(
-                        leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true)),
-                        bottomTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true)),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '${AppLocalizations.of(context)?.translate('updated') ?? 'Updated'}: 2025-09-11 12:45 PM',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
+  final spots = _generateDummyData();
+  return ListView(
+  padding: const EdgeInsets.all(16),
+  children: [
+  _infoCard(
+  icon: Icons.electrical_services,
+  title: AppLocalizations.of(context)
+      ?.translate('sourceInUse') ??
+  'Source in Use',
+  value: AppLocalizations.of(context)?.translate('grid') ?? 'Grid',
+  ),
+  const SizedBox(height: 16),
+  Card(
+  elevation: 4,
+  shape:
+  RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+  child: Padding(
+  padding: const EdgeInsets.all(16),
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  Text(
+  AppLocalizations.of(context)?.translate('voltage') ??
+  'Voltage (V)',
+  style: const TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+  ),
+  ),
+  SizedBox(
+  height: 200,
+  child: LineChart(
+  LineChartData(
+  minX: 0,
+  maxX: 11,
+  minY: 200,
+  maxY: 250,
+  gridData: FlGridData(
+  show: true,
+  drawVerticalLine: true,
+  getDrawingHorizontalLine: (value) => FlLine(
+  color: Colors.grey.withOpacity(0.2),
+  strokeWidth: 1,
+  ),
+  getDrawingVerticalLine: (value) => FlLine(
+  color: Colors.grey.withOpacity(0.2),
+  strokeWidth: 1,
+  ),
+  ),
+  borderData: FlBorderData(
+  show: true,
+  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+  ),
+  titlesData: FlTitlesData(
+  leftTitles: AxisTitles(
+  sideTitles: SideTitles(
+  showTitles: true,
+  reservedSize: 40,
+  interval: 10,
+  getTitlesWidget: (value, meta) {
+  if (value % 10 == 0) {
+  return Text(
+  value.toInt().toString(),
+  style: TextStyle(
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+  color: Colors.blueGrey[700],
+  ),
+  );
+  }
+  return Container();
+  },
+  ),
+  ),
+  bottomTitles: AxisTitles(
+  sideTitles: SideTitles(
+  showTitles: true,
+  interval: 2,
+  getTitlesWidget: (value, meta) {
+  return Padding(
+  padding: const EdgeInsets.only(top: 8.0),
+  child: Text(
+  value.toInt().toString(),
+  style: TextStyle(
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+  color: Colors.blueGrey[700],
+  ),
+  ),
+  );
+  },
+  ),
+  ),
+  topTitles:
+  AxisTitles(sideTitles: SideTitles(showTitles: false)),
+  rightTitles:
+  AxisTitles(sideTitles: SideTitles(showTitles: false)),
+  ),
+  lineBarsData: [
+  LineChartBarData(
+  spots: spots,
+  isCurved: true,
+  gradient: const LinearGradient(
+  colors: [Colors.teal, Colors.deepPurpleAccent],
+  ),
+  barWidth: 3,
+  isStrokeCapRound: true,
+  belowBarData: BarAreaData(
+  show: true,
+  gradient: LinearGradient(
+  colors: [
+  Colors.teal.withOpacity(0.3),
+  Colors.deepPurpleAccent.withOpacity(0.1),
+  ],
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  ),
+  ),
+  dotData: FlDotData(
+  show: true,
+  getDotPainter: (spot, percent, bar, index) =>
+  FlDotCirclePainter(
+  radius: 4,
+  color: Colors.white,
+  strokeWidth: 2,
+  strokeColor: Colors.deepPurpleAccent,
+  ),
+  ),
+  ),
+  ],
+  lineTouchData: LineTouchData(
+  enabled: true,
+  handleBuiltInTouches: true,
+  touchTooltipData: LineTouchTooltipData(
+  tooltipBgColor: Colors.black87,
+  tooltipRoundedRadius: 8,
+  getTooltipItems: (touchedSpots) {
+  return touchedSpots.map((spot) {
+  return LineTooltipItem(
+  'X: ${spot.x.toInt()}\nY: ${spot.y.toStringAsFixed(1)} V',
+  const TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontSize: 12,
+  ),
+  );
+  }).toList();
+  },
+  ),
+  getTouchedSpotIndicator: (barData, spotIndexes) {
+  return spotIndexes.map((index) {
+  return TouchedSpotIndicatorData(
+  FlLine(
+  color:
+  Colors.deepPurpleAccent.withOpacity(0.6),
+  strokeWidth: 1.5,
+  dashArray: [5, 5],
+  ),
+  FlDotData(
+  show: true,
+  getDotPainter:
+  (spot, percent, bar, index) =>
+  FlDotCirclePainter(
+  radius: 6,
+  color: Colors.white,
+  strokeWidth: 3,
+  strokeColor: Colors.deepPurpleAccent,
+  ),
+  ),
+  );
+  }).toList();
+  },
+  ),
+  ),
+  duration: const Duration(milliseconds: 800),
+  curve: Curves.easeOutCubic,
+  ),
+  ),
+  const SizedBox(height: 8),
+  Text(
+  '${AppLocalizations.of(context)?.translate('updated') ?? 'Updated'}: 2025-09-11 12:45 PM',
+  style: TextStyle(color: Colors.grey[600]),
+  ),
+  ],
+  ),
+  ),
+  ),
+  ],
+  );
   }
 
-  Widget _infoCard({required IconData icon, required String title, required String value}) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: ListTile(
-        leading: Icon(icon, size: 40, color: Colors.teal),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: Text(value, style: const TextStyle(fontSize: 20, color: Colors.black87)),
-      ),
-    );
+  Widget _infoCard(
+  {required IconData icon,
+  required String title,
+  required String value}) {
+  return Card(
+  elevation: 4,
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+  child: ListTile(
+  leading: Icon(icon, size: 40, color: Colors.teal),
+  title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+  subtitle: Text(value,
+  style: const TextStyle(fontSize: 20, color: Colors.black87)),
+  ),
+  );
   }
-}
+  }
 
 //
 // ------------------- BATTERY SCREEN -------------------
@@ -1020,3 +1441,4 @@ class LogDataScreen extends StatelessWidget {
     );
   }
 }
+
