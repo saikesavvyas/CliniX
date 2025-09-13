@@ -24,15 +24,21 @@ Watch the UI Showcase in this demo video
   <table>
     <tr>
       <td align="center"><strong>Splash Screen</strong></td>
+      <td align="center"><strong>Role Selection</strong></td>
+      <td align="center"><strong>Login Screen</strong></td>
       <td align="center"><strong>Dashboard</strong></td>
       <td align="center"><strong>Battery</strong></td>
       <td align="center"><strong>Log Data</strong></td>
+      <td align="center"><strong>Settings</strong></td>
     </tr>
     <tr>
       <td><img src="/Application/media/Splash_Screen.png" width="200"></td>
+      <td><img src="/Application/media/Role_Selection.png" width="200"></td>
+      <td><img src="/Application/media/Login_Screen.png" width="200"></td>
       <td><img src="/Application/media/Dashboard.png" width="200"></td>
       <td><img src="/Application/media/Battery.png" width="200"></td>
       <td><img src="/Application/media/Log_Data.png" width="200"></td>
+      <td><img src="/Application/media/Settings.png" width="200"></td>
     </tr>
   </table>
 </div>
@@ -154,6 +160,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
