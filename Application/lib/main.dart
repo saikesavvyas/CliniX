@@ -69,7 +69,6 @@ class _SignUpPageState extends State<SignUpPage>
         return Scaffold(
           body: Stack(
             children: [
-              // Animated gradient background
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -82,7 +81,6 @@ class _SignUpPageState extends State<SignUpPage>
                   ),
                 ),
               ),
-              // Floating icons
               Positioned(
                 top: 60,
                 left: 30,
@@ -107,7 +105,6 @@ class _SignUpPageState extends State<SignUpPage>
                   child: Icon(Icons.favorite, size: 140, color: Colors.white),
                 ),
               ),
-              // Center glass card
               Center(
                 child: SingleChildScrollView(
                   child: Container(
@@ -207,7 +204,6 @@ class _SignUpPageState extends State<SignUpPage>
                               ),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  // Navigate to dashboard
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -286,7 +282,6 @@ class _SignUpPageState extends State<SignUpPage>
   }
 }
 
-// App State Management
 class AppState with ChangeNotifier {
   Locale _locale = const Locale('en', 'US');
   UserRole _userRole = UserRole.user;
@@ -329,7 +324,7 @@ class CliniXApp extends StatelessWidget {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return MaterialApp(
-          title: 'CliniX', // Don't use localization here yet
+          title: 'CliniX',
           debugShowCheckedModeBanner: false,
           theme: appState.isDarkMode
               ? ThemeData.dark().copyWith(
@@ -364,9 +359,6 @@ class CliniXApp extends StatelessWidget {
   }
 }
 
-//
-// ------------------- SPLASH SCREEN -------------------
-//
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -455,9 +447,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-//
-// ------------------- ROLE SELECTION SCREEN -------------------
-//
 class RoleSelectionScreen extends StatelessWidget {
   const RoleSelectionScreen({super.key});
 
@@ -568,9 +557,6 @@ class RoleSelectionScreen extends StatelessWidget {
   }
 }
 
-//
-// ------------------- LOGIN SCREEN -------------------
-//
 class LoginScreen extends StatefulWidget {
   final UserRole? selectedRole;
 
@@ -678,9 +664,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
                       TextFormField(
                         controller: _clinicIdController,
-                        keyboardType: TextInputType.number, // assuming Clinic ID is numeric
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.badge), // better icon for ID
+                          prefixIcon: const Icon(Icons.badge),
                           hintText: AppLocalizations.of(context)?.translate('clinicId') ?? 'Clinic ID',
                           border: const OutlineInputBorder(),
                         ),
@@ -762,9 +748,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-//
-// ------------------- HOME PAGE -------------------
-//
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -834,9 +817,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-//
-// ------------------- APP DRAWER -------------------
-//
 class AppDrawer extends StatelessWidget {
   final UserRole userRole;
   final String username;
@@ -948,9 +928,6 @@ class AppDrawer extends StatelessWidget {
   }
 }
 
-//
-// ------------------- SETTINGS SCREEN -------------------
-//
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -1128,9 +1105,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
-//
-// ------------------- DASHBOARD -------------------
-//
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
@@ -1352,9 +1326,6 @@ class DashboardScreen extends StatelessWidget {
   }
   }
 
-//
-// ------------------- BATTERY SCREEN -------------------
-//
 class BatteryScreen extends StatelessWidget {
   const BatteryScreen({super.key});
 
@@ -1410,9 +1381,6 @@ class BatteryScreen extends StatelessWidget {
   }
 }
 
-//
-// ------------------- LOG DATA SCREEN -------------------
-//
 class LogDataScreen extends StatelessWidget {
   const LogDataScreen({super.key});
 
@@ -1441,4 +1409,5 @@ class LogDataScreen extends StatelessWidget {
     );
   }
 }
+
 
