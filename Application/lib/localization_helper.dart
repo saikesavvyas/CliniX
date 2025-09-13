@@ -5,7 +5,6 @@ String translate(BuildContext context, String key) {
   try {
     return AppLocalizations.of(context).translate(key);
   } catch (e) {
-    // Fallback to English if localization is not available
     final defaultTranslations = {
       'appTitle': 'CliniX',
       'slogan': 'Engineered For Outages, Built For Lives!',
@@ -49,4 +48,5 @@ String translate(BuildContext context, String key) {
     };
     return defaultTranslations[key] ?? key;
   }
+
 }
