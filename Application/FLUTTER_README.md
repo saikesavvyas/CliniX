@@ -39,19 +39,19 @@ Watch the UI Showcase in this demo video
 
 ##  Features
 
-- **Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
-- **Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
-- **Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
-- **Predicted Backup Time:** Displays estimated battery runtime during outages.
-- **Historical Logs:** View a history of power source switching events.
-- **Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
+1. **Modern UI/UX:** Clean, intuitive interface built with Flutter's Material Design.
+2. **Live Data Simulation:** Mock voltage graphs and battery metrics that simulate real-time data.
+3. **Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
+4. **Predicted Backup Time:** Displays estimated battery runtime during outages.
+5. **Historical Logs:** View a history of power source switching events.
+6. **Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Flutter SDK:** Ensure you have Flutter installed on your machine. This project is built with Flutter 3.13.0+.
-- **An IDE:** such as Android Studio, VS Code, or IntelliJ IDEA with the Flutter plugin.
+1. **Flutter SDK:** Ensure you have Flutter installed on your machine. This project is built with Flutter 3.13.0+.
+2. **An IDE:** such as Android Studio, VS Code, or IntelliJ IDEA with the Flutter plugin.
 
 ### Installation & Running the App
 
@@ -106,16 +106,16 @@ The app will launch with a 5-second splash screen and then proceed to the login 
 
 This is a **frontend-only prototype**. All data is generated locally to simulate a connected backend.
 
-- **Dashboard Data:** The `DashboardScreen()` uses a `_generateDummyData()` method to create a list of `FlSpot` points, simulating voltage readings over time.
-- **Battery Data:** The `BatteryScreen()` displays hardcoded values for battery charge (82%) and backup time (3 hrs 45 mins).
-- **Log Data:** The `LogDataScreen()` displays a static list of `ListTile` widgets with example timestamps and power sources.
+1. **Dashboard Data:** The `DashboardScreen()` uses a `_generateDummyData()` method to create a list of `FlSpot` points, simulating voltage readings over time.
+2. **Battery Data:** The `BatteryScreen()` displays hardcoded values for battery charge (82%) and backup time (3 hrs 45 mins).
+3. **Log Data:** The `LogDataScreen()` displays a static list of `ListTile` widgets with example timestamps and power sources.
 
 ## UI/UX Overview
 
 The design prioritizes clarity and user trust in a critical environment:
-- **Color Scheme:** Uses a professional teal/white theme, with red/orange/green in the voltage chart to intuitively signal status.
-- **Navigation:** Simple bottom navigation bar for switching between the three main sections.
-- **Data Visualization:** Utilizes the `fl_chart` package to render a clear, informative line graph for voltage monitoring.
+1. **Color Scheme:** Uses a professional teal/white theme, with red/orange/green in the voltage chart to intuitively signal status.
+2. **Navigation:** Simple bottom navigation bar for switching between the three main sections.
+3. **Data Visualization:** Utilizes the `fl_chart` package to render a clear, informative line graph for voltage monitoring.
 
 ## Future Integration Plan
 
@@ -130,11 +130,11 @@ This UI is structured to be easily connected to a live backend. The integration 
 
 You can build this prototype into a standalone application for demonstration.
 
-**Build an Android APK:**
+1. **Build an Android APK:**
 ```bash
 flutter build apk --release
 ```
-**Build for Web**
+2. **Build for Web**
 ```bash
 flutter build web --release
 # The built files will be in the `/build/web` directory and can be deployed to any web server.
@@ -154,6 +154,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
