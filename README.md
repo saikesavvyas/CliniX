@@ -42,9 +42,9 @@ Rural clinics face significant challenges due to unstable power grids, directly 
 
 1.   **Four-Source Automatic Switching:** Seamless transition between **Grid (Primary)**, **Solar (Secondary)**, **Battery (Tertiary)**, and **Generator (Fallback)** based on availability.
 2.   **Three-Tier Priority Load Management:** Intelligent load-shedding to prioritize life-saving equipment.
-    *   **Tier 1 (Critical):** Refrigerators, Ventilators, ICU equipment.* 
-    *   **Tier 2 (Important):** Lighting, Fans, Communication devices.*
-    *   **Tier 3 (Non-Critical):** Air Conditioning, Water Heaters.*
+    *   **Tier 1 (Critical):** Refrigerators, Ventilators, ICU equipment.
+    *   **Tier 2 (Important):** Lighting, Fans, Communication devices.
+    *   **Tier 3 (Non-Critical):** Air Conditioning, Water Heaters.
 3.   **AI-Driven Predictive Power Management:** A machine learning model forecasts weather conditions to proactively manage energy, switching to battery *before* solar output drops due to clouds.
 4.   **GSM-Based SMS Alerts:** An ESP32 with a GSM module sends real-time SMS alerts to clinic staff for critical events like grid failure, low generator fuel, or total power loss.
 5.   **Cross-Platform Remote Dashboard:** A Flutter application provides real-time remote monitoring and control from any device (Android, iOS, Web). View status, historical data charts, and execute manual overrides from anywhere.
