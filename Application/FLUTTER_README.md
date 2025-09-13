@@ -50,7 +50,8 @@ Watch the UI Showcase in this demo video
 3. **Power Source Tracking:** Visualizes the current active power source (Grid, Solar, Battery, Generator).
 4. **Predicted Backup Time:** Displays estimated battery runtime during outages.
 5. **Historical Logs:** View a history of power source switching events.
-6. **Cross-Platform:** Runs seamlessly on Android, iOS, and the web from a single codebase.
+6. 6. **Multilingual Interface:** Full support for **English, Tamil, Hindi, Telugu, and Marathi**, ensuring accessibility for rural clinics and diverse communities. This feature makes the app **inclusive, user-friendly, and highly impactful** in real-world healthcare scenarios.  
+
 
 ## Getting Started
 
@@ -155,6 +156,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
