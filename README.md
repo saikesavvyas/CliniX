@@ -218,7 +218,8 @@ The Flutter dashboard provides a real-time view and control panel.
 1.  **Dashboard View:** See the active power source, battery percentage, solar output, and load.
 2.  **Historical Data:** View charts for energy usage and source availability over time.
 3.  **Manual Control:** Authorized users can manually force a source switch or manage load tiers.
-
+4.  **Multi-Lingual:** Available in regional languages for local use.
+   
 ## Project Structure
 ```bash
 /CliniX/
@@ -236,21 +237,16 @@ The Flutter dashboard provides a real-time view and control panel.
 │ └── platformio.ini
 │
 ├── /Application/ 
-│ ├── /android/
-│ ├── /ios/
 │ ├── /lib/
 │ │ └── main.dart
-│ │ └── services/
-│       └── mqtt_service.dart 
-│ ├── /linux/
-│ ├── /macos/
+│ │ └── localizations/
+│       └── app_localizations.dart 
 │ ├── /media/
 │ │ ├── Battery.png
 │ │ ├── Dashboard.png
 │ │ ├── Log_Data.png
 │ │ ├── Splash_Screen.png
 │ │ └── app_demo.gif
-│ ├── /web/
 │ ├── FLUTTER_README.md
 │ ├── pubspec.lock
 │ └── pubspec.yaml
