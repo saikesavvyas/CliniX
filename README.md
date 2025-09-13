@@ -171,11 +171,11 @@ This project involves multiple codebases:
 1.  **Clone the repositories:**
     ```bash
     # For ESP32 Firmware
-    git clone https://github.com/saikesavvyas/esp32-firmware-repo.git
+    git clone https://github.com/saikesavvyas/Firmware-repo.git
     # For Flutter Dashboard
     git clone https://github.com/saikesavvyas/Application-repo.git
     # For AI Model
-    git clone https://github.com/saikesavvyas/ai-model-repo.git
+    git clone https://github.com/saikesavvyas/AI Model-repo.git
     ```
 
 2.  **Configure the ESP32 Firmware:**
