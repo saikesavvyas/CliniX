@@ -4,9 +4,9 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Android__%7C__iOS__%7C__Web-blue)
-![Status](https://img.shields.io/badge/Status-Live%20MQTT%20Integration-success)
+![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 ![License](https://img.shields.io/badge/License-MIT-teal)
-![MQTT](https://img.shields.io/badge/Protocol-MQTT-orange)
+![Languages](https://img.shields.io/badge/Languages-Tamil%20|%20Telugu%20|%20Hindi%20|%20Marathi%20|%20English-brightgreen)
 
 A responsive Flutter dashboard for the **CliniX** system that now features **real-time MQTT integration**. This application connects to a cloud MQTT broker to display live power source status, voltage metrics, battery levels, and predicted backup time.
 
@@ -238,3 +238,4 @@ See main repository for licensing details.
 > **Note:** This application is configured to use the public HiveMQ broker for demonstration purposes.  
 > For production deployment, replace with your dedicated MQTT broker configuration in  
 > `lib/services/mqtt_service.dart`.  
+
