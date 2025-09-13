@@ -88,21 +88,16 @@ The app will launch with a 5-second splash screen and then proceed to the login 
 ## Project Structure
 ```bash
 /Application/ # Flutter Application
- ├── /android/
- ├── /ios/
  ├── /lib/
  │ └── main.dart
- │ 
- ├── /linux/
- ├── /macos/
+ │ └── localizations/
+ │       └── app_localizations.dart
  ├── /media/
  │ ├── Battery.png
  │ ├── Dashboard.png
  │ ├── Log_Data.png
  │ ├── Splash_Screen.png
  │ └── app_demo.gif
- │
- ├── /web/
  ├── FLUTTER_README.md
  ├── pubspec.lock
  └── pubspec.yaml
@@ -160,6 +155,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
