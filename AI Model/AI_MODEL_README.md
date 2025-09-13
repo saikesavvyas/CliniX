@@ -13,6 +13,7 @@ This AI Model is trained currently on a synthetic dataset that was created and s
 - Temperature (in Celsius)
 - Voltage (in V)
 - Current (in A)
+
 The output of the dataset will be in the 10th column which is the "SourceOrder" which is of the format;
 - Source1 --> Source2 --> Source3 --> Source4
 
