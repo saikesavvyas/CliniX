@@ -42,9 +42,9 @@ Rural clinics face significant challenges due to unstable power grids, directly 
 
 *   **Four-Source Automatic Switching:** Seamless transition between **Grid (Primary)**, **Solar (Secondary)**, **Battery (Tertiary)**, and **Generator (Fallback)** based on availability.
 *   **Three-Tier Priority Load Management:** Intelligent load-shedding to prioritize life-saving equipment.
-    *   **Tier 1 (Critical):** Refrigerators, Ventilators, ICU equipment. *Never shed.*
-    *   **Tier 2 (Important):** Lighting, Fans, Communication devices. *Shed after Tier 3.*
-    *   **Tier 3 (Non-Critical):** Air Conditioning, Water Heaters. *Shed first.*
+    *   **Tier 1 (Critical):** Refrigerators, Ventilators, ICU equipment. 
+    *   **Tier 2 (Important):** Lighting, Fans, Communication devices. 
+    *   **Tier 3 (Non-Critical):** Air Conditioning, Water Heaters. 
 *   **AI-Driven Predictive Power Management:** A machine learning model forecasts weather conditions to proactively manage energy, switching to battery *before* solar output drops due to clouds.
 *   **GSM-Based SMS Alerts:** An ESP32 with a GSM module sends real-time SMS alerts to clinic staff for critical events like grid failure, low generator fuel, or total power loss.
 *   **Cross-Platform Remote Dashboard:** A Flutter application provides real-time remote monitoring and control from any device (Android, iOS, Web). View status, historical data charts, and execute manual overrides from anywhere.
@@ -129,7 +129,7 @@ flowchart TD
 | **ESP32 Development Board** | 1 | Serves as communication gateway and SMS module controller. |
 | **GSM Module (SIM800L / SIM900A)** | 1 | For sending SMS alerts. |
 | **Voltage Sensors (AC & DC)** | 4 | To detect presence of Grid, Solar output, Battery voltage, Generator output. |
-| **Contactors / Relays** | 6 | For switching loads between sources (4P) and shedding Tier 2/3 loads (2P). Rated for your clinic's current. |
+| **Contactors / Relays** | 6 | For switching loads between sources and shedding Tier 2/3 loads. Rated for your clinic's current. |
 | **DC Power Supply** | 1 | 24V/12V to power the PLC, ESP32, sensors, and contactor coils. |
 | **Enclosure** | 1 | IP-rated enclosure for safety. |
 | **Fuses, Terminal Blocks, Wiring** | - | As required. |
@@ -147,8 +147,8 @@ This project involves multiple codebases:
 
 ### Prerequisites
 
-*   **Hardware:** Components listed in the BOM.
-*   **Software:**
+1.   **Hardware:** Components listed in the BOM.
+2.  **Software:**
     *   PLC programming software (specific to your PLC model).
     *   Arduino IDE or PlatformIO for ESP32 development.
     *   Flutter SDK for building the dashboard app.
