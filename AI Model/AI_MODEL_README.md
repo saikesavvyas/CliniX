@@ -1,7 +1,7 @@
 # AI Model of CliniX
 
 This model gives a predictive analysis of what source to prioritize first in the hospital, based on the electrical and environmental data collected in hospitals.
-
+The modules and packages required to train the model are available in the file Requirements.txt
 ## Step 1) Dataset Creation
 This AI Model is trained currently on a synthetic dataset that was created and simulated using MATLAB. The dataset comprises of 9 different columns, namely:
 - DailyPatients (Low, Medium, High)
