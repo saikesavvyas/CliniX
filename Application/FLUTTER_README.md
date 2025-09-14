@@ -97,8 +97,14 @@ The app will launch with a 5-second splash screen and then proceed to the login 
  │ ├── Battery.png
  │ ├── Dashboard.png
  │ ├── Log_Data.png
+ │ ├── Login_Screen.png
+ │ ├── Role_Selection.png
+ │ ├── Settings.png
  │ ├── Splash_Screen.png
  │ └── app_demo.gif
+ ├── runner
+ ├── web
+ ├── windows
  ├── FLUTTER_README.md
  ├── pubspec.lock
  └── pubspec.yaml
@@ -118,6 +124,7 @@ The design prioritizes clarity and user trust in a critical environment:
 1. **Color Scheme:** Uses a professional teal/white theme, with red/orange/green in the voltage chart to intuitively signal status.
 2. **Navigation:** Simple bottom navigation bar for switching between the three main sections.
 3. **Data Visualization:** Utilizes the `fl_chart` package to render a clear, informative line graph for voltage monitoring.
+4. **Languages:** Available in regional languages for local use
 
 ## Future Integration Plan
 
@@ -139,8 +146,9 @@ flutter build apk --release
 2. **Build for Web**
 ```bash
 flutter build web --release
-# The built files will be in the `/build/web` directory and can be deployed to any web server.
 ```
+The built files will be in the `/build/web` directory and can be deployed to any web server.
+
 ## Dependencies
 This project uses the following key packages (as defined in pubspec.yaml):
 
@@ -156,6 +164,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
