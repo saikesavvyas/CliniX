@@ -222,6 +222,43 @@ The Flutter dashboard provides a real-time view and control panel.
 ```bash
 /CliniX/
 │
+├── /AI Model/
+│ ├── AI_MODEL_README.md
+│ ├── ModelPrediction.py
+│ ├── ModelTraining.py
+│ └── Requirements.txt
+│
+├── /Application/ 
+│ ├── /lib/
+│ │ └── main.dart
+│ │ └── localizations/
+│       └── app_localizations.dart 
+├── /media/
+│ │ ├── Battery.png
+│ │ ├── Dashboard.png
+│ │ ├── Log_Data.png
+│ │ ├── Login_Screen.png
+│ │ ├── Role_Selection.png
+│ │ ├── Settings.png
+│ │ ├── Splash_Screen.png
+│ │ └── app_demo.gif
+│ ├── runner
+│ ├── web
+│ ├── windows
+│ ├── FLUTTER_README.md
+│ ├── pubspec.lock
+│ └── pubspec.yaml
+│
+├── /Circuit Diagram/
+│ ├── AC Detection Circuit.png
+│ ├── DC Detection Circuit.png
+│
+├── /Demo/
+│ ├── /Ai_Model/
+│ ├── Application_Demo.mp4
+│ ├── GSM_Alerts_Demo.mp4
+│ ├── Ladder_Logic.mp4
+│
 ├── /Firmware/ 
 │ ├── /src/
 │ │ ├── encoders.h
@@ -231,28 +268,7 @@ The Flutter dashboard provides a real-time view and control panel.
 │ │ ├── scaler.h
 │ │ ├── modbus_handler.cpp
 │ │ ├── sms_handler.cpp
-│ │ ├── mqtt_handler.cpp n
 │ └── platformio.ini
-│
-├── /Application/ 
-│ ├── /lib/
-│ │ └── main.dart
-│ │ └── localizations/
-│       └── app_localizations.dart 
-│ ├── /media/
-│ │ ├── Battery.png
-│ │ ├── Dashboard.png
-│ │ ├── Log_Data.png
-│ │ ├── Splash_Screen.png
-│ │ └── app_demo.gif
-│ ├── FLUTTER_README.md
-│ ├── pubspec.lock
-│ └── pubspec.yaml
-│
-├── /AI Model/ 
-│ ├── ModelPrediction.py
-│ ├── ModelTraining.py
-│ └── requirements.txt
 │
 ├── /PLC Simulation/ 
 │ └── /CliniX Ladder Logic/      **REQUIRES ISPSOFT SOFTWARE TO ACCESS THE CONTENTS OF THE FOLDER**
