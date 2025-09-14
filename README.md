@@ -254,7 +254,7 @@ Navigate to the 'Demo' folder to check out the working demo of
 > CliniX app
 
 or click on the link below
-[Click here to inspect on working demo!](CliniX/Demo/)
+[Click here to inspect on working demo!](Demo)
 
 ## Project Structure
 ```bash
