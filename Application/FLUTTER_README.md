@@ -15,7 +15,7 @@ A beautiful and responsive Flutter dashboard designed for the **CliniX** system.
 Watch the UI Showcase in this demo video
 
 <p align="center">
-  <img src="/Application/media/app_demo.gif" alt="CliniX App Demo" width="640"/>
+  <img src="[(https://drive.google.com/file/d/1TxI5rlnna3JMAcRhqMZVNLn4DWQDmWBC/view?usp=sharing)" alt="CliniX App Demo" width="640"/>
 </p>
 
 ##  Screen Gallery
@@ -164,6 +164,7 @@ For information about the hardware system this UI is designed to monitor, includ
 
 ## License
 This project is part of the CliniX Power Management System. See main repository for licensing details.
+
 
 
 
