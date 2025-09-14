@@ -28,6 +28,7 @@ An Industry-Grade, end-to-end IoT solution designed to guarantee an uninterrupte
   - [AI-Powered Predictive Switching](#ai-powered-predictive-switching)
   - [SMS Alert System](#sms-alert-system)
   - [Remote Dashboard App](#remote-dashboard-app)
+  - [Demo](#demo)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -243,6 +244,16 @@ The Flutter dashboard provides a real-time view and control panel.
   </table>
 </div>
 
+## Demo:
+
+Navigate to the 'Demo' folder to check out the working demo of
+
+> GSM Alert,
+> AI Model,
+> Ladder Logic Simulation,
+> CliniX app
+
+or click on the link below
 [Click here to inspect on working demo!](CliniX/Demo/)
 
 ## Project Structure
