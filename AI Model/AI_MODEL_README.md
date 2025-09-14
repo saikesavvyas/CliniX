@@ -1,4 +1,8 @@
 # AI Model of CliniX
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)
+![Keras](https://img.shields.io/badge/Keras-2.x-red)
+![PlatformIO](https://img.shields.io/badge/PlatformIO-compatible-brightgreen)
 
 This model gives a predictive analysis of what source to prioritize first in the hospital, based on the electrical and environmental data collected in hospitals.
 The modules and packages required to train the model are available in the file Requirements.txt
