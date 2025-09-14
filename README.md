@@ -217,7 +217,34 @@ The Flutter dashboard provides a real-time view and control panel.
 2.  **Historical Data:** View charts for energy usage and source availability over time.
 3.  **Manual Control:** Authorized users can manually force a source switch or manage load tiers.
 4.  **Multi-Lingual:** Available in regional languages for local use.
-   
+
+[Click on this to try our CliniX App!](https://clinix-application.netlify.app)
+
+   <div align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Splash Screen</strong></td>
+      <td align="center"><strong>Role Selection</strong></td>
+      <td align="center"><strong>Login Screen</strong></td>
+      <td align="center"><strong>Dashboard</strong></td>
+      <td align="center"><strong>Battery</strong></td>
+      <td align="center"><strong>Log Data</strong></td>
+      <td align="center"><strong>Settings</strong></td>
+    </tr>
+    <tr>
+      <td><img src="/Application/media/Splash_Screen.png" width="200"></td>
+      <td><img src="/Application/media/Role_Selection.png" width="200"></td>
+      <td><img src="/Application/media/Login_Screen.png" width="200"></td>
+      <td><img src="/Application/media/Dashboard.png" width="200"></td>
+      <td><img src="/Application/media/Battery.png" width="200"></td>
+      <td><img src="/Application/media/Log_Data.png" width="200"></td>
+      <td><img src="/Application/media/Settings.png" width="200"></td>
+    </tr>
+  </table>
+</div>
+
+[Click here to inspect on working demo!](CliniX/Demo/)
+
 ## Project Structure
 ```bash
 /CliniX/
