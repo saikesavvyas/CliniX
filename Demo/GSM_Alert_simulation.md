@@ -1,5 +1,10 @@
 # GSM ALERTS DEMO:
 
+The below video shows the hardware setup and live demo of GSM Alert from ESP32:
+
+[Click here for checking out the working of GSM alert](https://drive.google.com/file/d/1xL9LF3eHNSRqYVwqcmxvyNqBU4YYpk5z/view?usp=sharing)
+
+
 <div align="center">
   <table>
     <tr>
@@ -11,7 +16,3 @@
   </table>
 </div>
 
-
-The below video shows the hardware setup and live demo of GSM Alert from ESP32:
-
-[Click here for checking out the working of GSM alert](https://drive.google.com/file/d/1xL9LF3eHNSRqYVwqcmxvyNqBU4YYpk5z/view?usp=sharing)
