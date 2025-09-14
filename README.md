@@ -254,10 +254,11 @@ The Flutter dashboard provides a real-time view and control panel.
 │ ├── DC Detection Circuit.png
 │
 ├── /Demo/
-│ ├── /Ai_Model/
-│ ├── Application_Demo.mp4
-│ ├── GSM_Alerts_Demo.mp4
-│ ├── Ladder_Logic.mp4
+│ ├── AI_Model_Accuracy.jpeg
+| ├── AI_Model_Output.jpeg
+│ ├── CliniX_application_Demo.md
+│ ├── GSM_Alert_simulation.md
+│ ├── Ladder_Logic_demo.md
 │
 ├── /Firmware/ 
 │ ├── /src/
