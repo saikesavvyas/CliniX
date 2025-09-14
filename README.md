@@ -255,7 +255,7 @@ The Flutter dashboard provides a real-time view and control panel.
 │
 ├── /Demo/
 │ ├── AI_Model_Accuracy.jpeg
-| ├── AI_Model_Output.jpeg
+│ ├── AI_Model_Output.jpeg
 │ ├── CliniX_application_Demo.md
 │ ├── GSM_Alert_simulation.md
 │ ├── Ladder_Logic_demo.md
