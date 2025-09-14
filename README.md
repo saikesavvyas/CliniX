@@ -67,18 +67,16 @@ flowchart TD
     ESP32[ESP32 Module<br>Data Gateway]
     GSM[GSM Module]
 
-    Broker[MQTT Broker<br>Mosquitto/HiveMQ]
     AI[AI Prediction Server<br>Weather Forecast API]
 
     Flutter[Flutter Dashboard App<br>Android/iOS/Web]
 
-    %% Define connections with protocol labels
+    %% Define connections without MQTT
     PowerSources <-->|Monitors & Controls| PLC
     PLC <-->|Modbus RTU/Ethernet| ESP32
     ESP32 <-->|SMS| GSM
-    ESP32 <-..->|MQTT Pub/Sub| Broker
-    ESP32 <-..->|HTTP REST API| AI
-    Broker <-..->|MQTT over Internet| Flutter
+    ESP32 <-->|HTTP REST API| AI
+    AI <-->|HTTP REST API| Flutter
 
     %% Group nodes with clean, minimal styling
     subgraph PowerSources [Power Sources]
@@ -99,7 +97,6 @@ flowchart TD
     end
 
     subgraph CloudLayer [Cloud Services]
-        Broker
         AI
     end
 
@@ -118,8 +115,9 @@ flowchart TD
     class Grid,Solar,Battery,Generator source
     class PLC,PLC_Logic control
     class ESP32,GSM gateway
-    class Broker,AI cloud
+    class AI cloud
     class Flutter app
+
 ```
 ## Hardware Bill of Materials (BOM)
 
