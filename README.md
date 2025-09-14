@@ -309,6 +309,4 @@ Project Link: [https://github.com/saikesavvyas/CliniX](https://github.com/saikes
 
 *   ["PLC & SCADA For Efficient Load Management And Fault Monitoring" - 2024 IEEE](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10481895&isnumber=10481679)
 *   ["Power Source Management System With Load Priority Control" - IJCRT](https://ijcrt.org/papers/IJCRT2105971.pdf)
-*   [PubSubClient (MQTT) Library](https://github.com/knolleary/pubsubclient)
-*   [Flutter MQTT Client](https://pub.dev/packages/mqtt_client)
 *   Shoutout to healthcare workers in rural areas.
